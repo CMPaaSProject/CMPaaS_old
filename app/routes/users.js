@@ -4,4 +4,5 @@ module.exports = app => {
     app
         .route(app.get('usersApiRoute'))
         .post(api.create)
+        .get(api.list);
 }

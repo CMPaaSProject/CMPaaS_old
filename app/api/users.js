@@ -36,5 +36,12 @@ module.exports = app => {
         }
     }
 
+    api.list = (req, res) => {
+        userModel
+            .find({}).select('-password')
+            .then(users => { res.json(users), err => res.status(500).json(error.parse('users-4', err))});
+
+    }
+
     return api;
 }
