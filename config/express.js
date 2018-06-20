@@ -7,6 +7,7 @@ const app = express();
 
 //API Routes Deffinitions
 app.set('usersApiRoute', '/v1/users/');
+app.set('docsApiRoute', '/v1/docs/');
 
 //Application Deffinitions
 app.set('port', 3000);
