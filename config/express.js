@@ -30,6 +30,7 @@ consign({cwd: 'app'})
     .then('models')
     .then('api')
     .then('routes')
+    .then('swagger')
     .into(app);
 
 module.exports = app;
