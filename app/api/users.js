@@ -5,7 +5,6 @@ module.exports = app => {
     const error = app.errors.users;
 
     api.create = (req, res) => {
-        console.log(req.body);
         if(Array.isArray(req.body) || (req.body.constructor === Object && Object.keys(req.body).length === 0)) res.status(400).json(error.parse('users-1', new Error('This resource spect a JSON user object in the body request.')));
         else{
             userModel
