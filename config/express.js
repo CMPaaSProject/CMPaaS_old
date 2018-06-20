@@ -2,6 +2,7 @@ const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const secrets = require('./secrets.json')
 
 const app = express();
 
@@ -17,6 +18,11 @@ app.set('dbUri', 'localhost/cmpaas');
 app.use(morgan('dev'));
 app.use(express.static('./public'));
 app.use(bodyParser.json());
+
+//Load secret information file
+secrets.forEach(element => {
+    app.set(element.key, element.value);
+});
 
 //Consign load configuration
 consign({cwd: 'app'})
