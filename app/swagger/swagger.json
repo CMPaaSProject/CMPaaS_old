@@ -66,6 +66,31 @@
               }
             }
           }
+        },
+        "get": {
+          "tags": [
+            "/users/"
+          ],
+          "summary": "List all users",
+          "description": "This will get a list of users.",
+          "operationId": "listUsers",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Get all registered users",
+              "schema": {
+                "$ref": "#/definitions/UserList"
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
+          }
         }
       }
     },
@@ -102,6 +127,13 @@
               }
             }
           }
+        }
+      },
+      "UserList": {
+        "type": "array",
+        "items":{
+          "type": "object",
+          "$ref": "#/definitions/User"
         }
       },
       "UserCreationSuccessMessage": {
