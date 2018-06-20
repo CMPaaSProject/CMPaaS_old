@@ -5,8 +5,12 @@ const morgan = require('morgan');
 
 const app = express();
 
+//API Routes Deffinitions
+app.set('usersApiRoute', '/v1/users/');
+
 //Application Deffinitions
 app.set('port', 3000);
+app.set('dbUri', 'localhost/cmpaas');
 
 //Middlewares Settups
 app.use(morgan('dev'));
