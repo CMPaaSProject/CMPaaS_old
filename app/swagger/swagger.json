@@ -1,0 +1,137 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is the official api documentation of the services offered by publication system of the CMPaaS Project / Backend.",
+      "version": "1.0.0",
+      "title": "CMPaaS API (PPGI/UFES)",
+      "contact": {
+        "email": "wagner.perin@ufes.br"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/v1",
+    "tags": [
+      {
+        "name": "/users/",
+        "description": "Everything about Users"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "tags": [
+            "/users/"
+          ],
+          "summary": "Add a new user",
+          "description": "This will create a new user.",
+          "operationId": "createUser",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "User Object",
+              "description": "JSON Object containing all required user data to save in database",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Creation Success.",
+              "schema": {
+                "$ref": "#/definitions/UserCreationSuccessMessage"
+              }
+            },
+            "400": {
+              "description": "Bad request from user"
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "required": [
+          "name","surname","username","email","password"
+        ],
+        "properties": {
+            "name": {
+                "type": "string"
+                },
+            "surname": {
+                "type": "string"
+            },
+            "username": {
+                "type": "string"
+            },  
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "link":{
+            "type": "object",
+            "properties":{
+              "rel": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "UserCreationSuccessMessage": {
+        "type": "object",
+        "properties": {
+          "userMessage": {
+            "type": "string"
+          },
+          "user": {
+            "type": "object",
+            "$ref": "#/definitions/User"
+          }
+        }
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "moreInfo": {
+            "type": "string"
+          },
+          "userMessage": {
+            "type": "string"
+          },
+          "devMessage": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
