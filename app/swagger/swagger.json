@@ -18,6 +18,10 @@
       {
         "name": "/users/",
         "description": "Everything about Users"
+      },
+      {
+        "name": "/auth/",
+        "description": "User authentication service"
       }
     ],
     "schemes": [
@@ -90,8 +94,64 @@
                 "$ref": "#/definitions/ErrorMessage"
               }
             }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/auth": {
+        "post": {
+          "tags": [
+            "/auth/"
+          ],
+          "summary": "Authentica user",
+          "description": "This will generate an authentication token to a user.",
+          "operationId": "authenticate",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "User credentials",
+              "description": "JSON Object containing username and password fields.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserAuthentication"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Authentication Success. You have to copy the token value and past in the Authorize field.",
+              "schema": {
+                "$ref": "#/definitions/AuthenticationSuccessMessage"
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
           }
         }
+      }
+    },
+    "securityDefinitions":{
+      "api_key":{
+        "type": "apiKey",
+        "name": "X-Access-Token",
+        "in": "header"
       }
     },
     "definitions": {
@@ -129,6 +189,20 @@
           }
         }
       },
+      "UserAuthentication": {
+        "type": "object",
+        "required": [
+          "username","password"
+        ],
+        "properties": {
+          "username": {
+              "type": "string"
+          },  
+          "password": {
+            "type": "string"
+          }
+        }
+      },
       "UserList": {
         "type": "array",
         "items":{
@@ -145,6 +219,17 @@
           "user": {
             "type": "object",
             "$ref": "#/definitions/User"
+          }
+        }
+      },
+      "AuthenticationSuccessMessage": {
+        "type": "object",
+        "properties": {
+          "userMessage": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
           }
         }
       },
