@@ -9,6 +9,7 @@ const app = express();
 
 //API Routes Deffinitions
 app.set('usersApiRoute', '/v1/users/');
+app.set('meApiRoute', '/v1/users/me');
 app.set('docsApiRoute', '/v1/docs/');
 app.set('authApiRoute', '/v1/auth/');
 
