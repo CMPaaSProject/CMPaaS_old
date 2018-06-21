@@ -102,6 +102,41 @@
           ]
         }
       },
+      "/users/me": {
+        "get": {
+          "tags": [
+            "/users/"
+          ],
+          "summary": "Get all data from logged user.",
+          "description": "This will get all userdata from the athenticated user.",
+          "operationId": "getUserData",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Get all userdata from logged user.",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
       "/auth": {
         "post": {
           "tags": [
