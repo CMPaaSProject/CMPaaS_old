@@ -31,7 +31,7 @@ module.exports = app => {
 
     passport.use(new LocalStrategy({passReqToCallback: true},
       function(req, username, password, done) {
-        userModel.findOne({ username: req.body.username }, function(err, user) {
+        userModel.findOne({ username }, function(err, user) {
             if(err) return done(err, null, {message: 'User authentication error.'});
             if(!user) return done(null, false, {message: 'User authentication fail. Check your credentials.'});
             user.comparePassword(password, function(err, isMatch){
