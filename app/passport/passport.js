@@ -20,7 +20,7 @@ module.exports = app => {
 
     passport.use(new JwtStrategy(jwt_options, function(jwt_payload, next) {
       userModel
-          .findOne({_id: jwt_payload.id})
+          .findOne({_id: jwt_payload.id}).select('-password')
           .then(user => {
               if(!user) next(null, false);
               else next(null, user);
