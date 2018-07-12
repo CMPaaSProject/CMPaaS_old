@@ -26,8 +26,8 @@ module.exports = app => {
                 error = {
                     errorCode,
                     moreInfo: 'Consult api documentation at ' + app.get('docsApiRoute'),
-                    userMessage: errorObject.message,
-                    devMessage: errorObject
+                    userMessage: "This username or e-mail is already taken",
+                    devMessage: errorObject.message
                 };
                 break;
             case 'users-4':

@@ -12,7 +12,10 @@ module.exports = app => {
             else if(!user) res.status(401).json(error.parse('auth-2', info));
             else {
                 let token = jwt.sign({id: user._id}, app.get('jwt_secret'));
-                res.status(200).json({userMessage: 'Login success', token})
+                user = user.toObject();
+                delete user.password;
+                user.token = token;
+                res.status(200).json({userMessage: 'Login success', user})
             }
         })(req, res, next);
     }

@@ -193,10 +193,10 @@
       "User": {
         "type": "object",
         "required": [
-          "name","surname","username","email","password"
+          "firstname","surname","username","email","password"
         ],
         "properties": {
-            "name": {
+            "firstname": {
                 "type": "string"
                 },
             "surname": {

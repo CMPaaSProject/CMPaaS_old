@@ -18,7 +18,7 @@ module.exports = app => {
                     user = user.toObject();
                     delete user.password;
                     res.status(201).json({
-                        userMessage: 'User created success',
+                        userMessage: 'User '+ user.username +' was successfully created',
                         user
                     })
                 }, err => {

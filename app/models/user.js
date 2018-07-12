@@ -3,7 +3,7 @@ module.exports = app => {
     const bcrypt = require('bcrypt');
 
     const schema = mongoose.Schema({
-        name: {
+        firstname: {
             type: String,
             required: true,
             trim: true
@@ -28,7 +28,7 @@ module.exports = app => {
         },
         password: {
             type: String,
-            require: true
+            required: true
         },
         link: {
             rel: {
@@ -37,7 +37,16 @@ module.exports = app => {
             href: {
                 type: String
             }
-        }
+        },
+        facebook: {
+            id: {
+                type: String
+            },
+            access_token: {
+                type: String
+            }
+        },
+        profile_picture: String
     });
 
     schema.pre('save', function(next){
