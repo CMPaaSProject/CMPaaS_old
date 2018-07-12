@@ -10,11 +10,11 @@ const baseUrl = 'http://localhost:3000/v1/users/';
 const emptyArray = [];
 const emptyUser = {};
 const invalidUser = {
-    "name": "Wagner",
+    "firstname": "Wagner",
     "surname": "de Andrade Perin"
 };
 const validUser = {
-    "name": "Wagner",
+    "firstname": "Wagner",
     "surname": "de Andrade Perin",
     "username": "wagnerperin",
     "email": "wagnerperin@gmail.com",
