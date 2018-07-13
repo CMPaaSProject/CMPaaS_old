@@ -4,4 +4,8 @@ module.exports = app => {
     app
         .route(app.get('authApiRoute'))
         .post(api.authenticate);
+    
+    app
+        .route(app.get('authApiRoute')+'/facebook')
+        .post(api.fbAuthenticate);
 }

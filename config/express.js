@@ -9,10 +9,10 @@ const app = express();
 require('./env')(app);
 
 //API Routes Deffinitions
-app.set('usersApiRoute', '/v1/users/');
+app.set('usersApiRoute', '/v1/users');
 app.set('meApiRoute', '/v1/users/me');
-app.set('docsApiRoute', '/v1/docs/');
-app.set('authApiRoute', '/v1/auth/');
+app.set('docsApiRoute', '/v1/docs');
+app.set('authApiRoute', '/v1/auth');
 
 //Application Deffinitions
 app.set('port', process.env.PORT || 80);

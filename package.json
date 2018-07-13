@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/CMPaaSProject/CMPaaS#readme",
   "dependencies": {
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "consign": "^0.1.6",
     "express": "^4.16.3",
@@ -35,6 +35,8 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
     "swagger-ui-express": "^3.0.10"
   },
   "devDependencies": {
