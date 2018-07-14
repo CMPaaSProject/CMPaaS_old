@@ -46,6 +46,17 @@ module.exports = app => {
                 type: String
             }
         },
+        google: {
+            id: {
+                type: String
+            },
+            access_token: {
+                type: String
+            },
+            id_token: {
+                type: String
+            }
+        },
         profile_picture: String
     });
 

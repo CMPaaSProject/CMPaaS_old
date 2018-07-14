@@ -47,6 +47,31 @@ module.exports = app => {
             });
     }
 
+    api.gAuthenticate = (req, res, next) => {
+        userModel.findOne({"google.id": req.body.google.id})
+            .then(result => {
+                if(!result) res.status(400).json(error.parse('auth-3'));
+                let user = result.toObject();
+                request('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+req.body.google.id_token)
+                    .then((d)=>{
+                        data = JSON.parse(d);
+                        if(data.sub == user.google.id){
+                            user.token = jwt.sign({id: user._id}, app.get('jwt_secret'));
+                            delete user.password;
+                            res.status(200).json({userMessage: 'Login success', user});
+                        }else{
+                            res.status(400).json(error.parse('auth-3'));
+                        }
+                    })
+                    .catch(err => {
+                        res.status(400).json(error.parse('auth-4', err));
+                    });
+            },
+            error => {
+                res.status(500).json(error.parse('auth-1', error));
+            });
+    }
+
     api.authRequired = (req, res, next) => {
         passport.authenticate('jwt', { session: false }, function(err, user, info){
             if(err) res.status(500).json(error.parse('auth-1', info));
