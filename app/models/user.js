@@ -30,6 +30,10 @@ module.exports = app => {
             type: String,
             required: true
         },
+        created: {
+            type: Date,
+            default: Date.now
+        },
         link: {
             rel: {
                 type: String
