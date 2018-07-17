@@ -43,5 +43,11 @@ module.exports = app => {
 
     }
 
+    api.globalInfo = (req, res) => {
+        userModel
+            .aggregate([{$group: {_id: "$locInfo.country", count: {$sum: 1}, countryCode: {$last:"$locInfo.countryCode"}}}, {$sort: {"count":-1}}])
+            .then(users => { res.json(users), err => res.status(500).json(error.parse('users-4', err))});
+    }
+
     return api;
 }

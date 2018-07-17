@@ -57,7 +57,24 @@ module.exports = app => {
                 type: String
             }
         },
-        profile_picture: String
+        profile_picture: String,
+        locInfo: {
+            country: {
+                type: String
+            },
+            countryCode: {
+                type: String
+            },
+            region: {
+                type: String
+            },
+            regionName: {
+                type: String
+            },
+            city: {
+                type: String
+            }
+        }
     });
 
     schema.pre('save', function(next){
