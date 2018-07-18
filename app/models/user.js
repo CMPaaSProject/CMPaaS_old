@@ -78,7 +78,24 @@ module.exports = app => {
             city: {
                 type: String
             }
-        }
+        },
+        maps: [{
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Map'
+            },
+            title: {
+                type: String
+            },
+            link: {
+                rel: {
+                    type: String
+                },
+                href: {
+                    type: String
+                }
+            }
+        }]
     });
 
     schema.pre('save', function(next){
