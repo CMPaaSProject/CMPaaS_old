@@ -95,6 +95,23 @@ module.exports = app => {
                     type: String
                 }
             }
+        }],
+        groups: [{
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Group'
+            },
+            name: {
+                type: String
+            },
+            link: {
+                rel: {
+                    type: String
+                },
+                href: {
+                    type: String
+                }
+            }
         }]
     });
 

@@ -11,6 +11,7 @@ require('./env')(app);
 //API Routes Deffinitions
 app.set('usersApiRoute', '/v1/users');
 app.set('mapsApiRoute', '/v1/maps');
+app.set('groupsApiRoute', '/v1/groups');
 app.set('meApiRoute', '/v1/users/me');
 app.set('docsApiRoute', '/v1/docs');
 app.set('authApiRoute', '/v1/auth');
