@@ -5,5 +5,5 @@ module.exports = app => {
     app
         .route(app.get('mapsApiRoute'))
         .post(authApi.authRequired, api.create)
-        .get(authApi.authRequired, api.list);
+        .get(authApi.authRequired, authApi.adminRequired, api.list);
 }

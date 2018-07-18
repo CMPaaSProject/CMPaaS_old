@@ -5,7 +5,7 @@ module.exports = app => {
     app
         .route(app.get('usersApiRoute'))
         .post(api.create)
-        .get(authApi.authRequired, api.list);
+        .get(authApi.authRequired, authApi.adminRequired, api.list);
     
     app
         .route(app.get('usersApiRoute')+'/globalInfo')
