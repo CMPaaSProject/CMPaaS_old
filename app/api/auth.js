@@ -84,5 +84,10 @@ module.exports = app => {
         })(req, res, next);
     }
 
+    api.adminRequired = (req, res, next) => {
+        if(req.user.groups.filter(group => (group.name === "Admin")).length > 0) next();
+        else res.status(403).json(error.parse('auth-5', new Error('This resource requires admin level.')));
+    }
+
     return api;
 }

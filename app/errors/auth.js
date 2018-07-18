@@ -37,6 +37,14 @@ module.exports = app => {
                     devMessage: errorObject
                 };
                 break;
+            case 'auth-5':
+                error = {
+                    errorCode,
+                    moreInfo: 'Consult api documentation at ' + app.get('docsApiRoute'),
+                    userMessage: 'Forbidden: You have no rights to access this resource.',
+                    devMessage: errorObject
+                };
+                break;
         }
 
         return error;
