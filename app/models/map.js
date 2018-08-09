@@ -19,6 +19,10 @@ module.exports = app => {
             type: Date,
             default: Date.now
         },
+        last_update: {
+            type: Date,
+            default: Date.now
+        },
         author: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
@@ -47,7 +51,23 @@ module.exports = app => {
         isPublic: {
             type: Boolean,
             default: true
-        }
+        },
+        versions: [
+            {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Version'
+                },
+                link: {
+                    rel: {
+                        type: String
+                    },
+                    href: {
+                        type: String
+                    }
+                }
+            }
+        ]
     });
 
     mongoose.model('Map', schema);

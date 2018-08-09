@@ -43,6 +43,14 @@ module.exports = app => {
 
     }
 
+    api.specificUser = (req, res) => {
+        userModel
+            .findById(req.params.id).select('-password')
+            .then(user => {
+                res.json(user);
+            })
+    }
+
     api.globalInfo = (req, res) => {
         userModel
             .aggregate([{$group: {_id: "$locInfo.country", count: {$sum: 1}, countryCode: {$last:"$locInfo.countryCode"}}}, {$sort: {"count":-1}}])

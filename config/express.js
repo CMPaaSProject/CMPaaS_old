@@ -11,6 +11,8 @@ require('./env')(app);
 //API Routes Deffinitions
 app.set('usersApiRoute', '/v1/users');
 app.set('mapsApiRoute', '/v1/maps');
+app.set('versionsApiRoute', '/v1/versions');
+app.set('followApiRoute', '/v1/follow')
 app.set('groupsApiRoute', '/v1/groups');
 app.set('meApiRoute', '/v1/users/me');
 app.set('docsApiRoute', '/v1/docs');
@@ -27,7 +29,7 @@ secrets.forEach(element => {
 
 //Middlewares Settups
 app.use(morgan('dev'));
-app.use(express.static('./public'));
+app.use("/", express.static('./public'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 

@@ -1,6 +1,7 @@
 module.exports = app => {
     const mapModel = require('mongoose').model('Map');
     const userModel = require('mongoose').model('User');
+    const versionModel = require('mongoose').model('Version');
 
     const api = {};
     const error = app.errors.maps;
@@ -45,6 +46,37 @@ module.exports = app => {
         mapModel
             .find({})
             .then(maps => { res.json(maps), err => res.status(500).json(error.parse('maps-2', err))});
+    }
+
+    api.createVersion = (req, res) => {
+        let newVersion = {
+            content: req.body
+        };
+
+        versionModel
+            .create(newVersion)
+            .then(version => {
+                version.link = {
+                    rel: 'version',
+                    href: app.get('versionsApiRoute')+'/'+version._id
+                }
+                
+                mapModel
+                    .findById(req.params.mapId)
+                    .then(map => {
+                        map.versions.push(version);
+                        version.map = map;
+                        version.save();
+                        map.save();
+
+                        res.status(201).json({
+                            userMessage: 'Version was successfully created',
+                            version
+                        });
+                    });
+            });
+
+        
     }
 
     return api;

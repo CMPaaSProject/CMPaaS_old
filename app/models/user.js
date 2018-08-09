@@ -112,6 +112,40 @@ module.exports = app => {
                     type: String
                 }
             }
+        }],
+        following: [{
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            username: {
+                type: String
+            },
+            link: {
+                rel: {
+                    type: String
+                },
+                href: {
+                    type: String
+                }
+            }
+        }],
+        followers: [{
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            username: {
+                type: String
+            },
+            link: {
+                rel: {
+                    type: String
+                },
+                href: {
+                    type: String
+                }
+            }
         }]
     });
 

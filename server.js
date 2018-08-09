@@ -1,7 +1,7 @@
-const http = require('http');
 const app = require('./config/express');
+const http = require('http').Server(app);
 require('./config/database')(app.get('dbUri'));
 
-http.createServer(app).listen(app.get('port'), () => {
+http.listen(app.get('port'), () => {
     console.log('Server running at port ' + app.get('port'));
 });
