@@ -300,7 +300,7 @@ var AdminDashboardComponent = /** @class */ (function () {
                 }
             });
         }, function (error) { return console.log(error); });
-        this.http.get('http://localhost:3000/v1/users/globalInfo')
+        this.http.get('http://cmpaas.org/v1/users/globalInfo')
             .subscribe(function (data) {
             _this.globalInfo = data;
             _this.populate();

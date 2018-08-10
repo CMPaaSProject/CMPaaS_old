@@ -5,7 +5,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 
-const baseUrl = 'http://localhost:3000/v1/users/';
+const baseUrl = 'http://cmpaas.org/v1/users/';
 
 const emptyArray = [];
 const emptyUser = {};

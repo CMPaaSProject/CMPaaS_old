@@ -1545,12 +1545,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "meApiUri", function() { return meApiUri; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "versionApiUri", function() { return versionApiUri; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "followApiUri", function() { return followApiUri; });
-var authApiUri = 'http://localhost:3000/v1/auth';
-var userApiUri = 'http://localhost:3000/v1/users';
-var mapApiUri = 'http://localhost:3000/v1/maps';
-var meApiUri = 'http://localhost:3000/v1/users/me';
-var versionApiUri = 'http://localhost:3000/v1/versions';
-var followApiUri = 'http://localhost:3000/v1/follow';
+var authApiUri = 'http://cmpaas.org/v1/auth';
+var userApiUri = 'http://cmpaas.org/v1/users';
+var mapApiUri = 'http://cmpaas.org/v1/maps';
+var meApiUri = 'http://cmpaas.org/v1/users/me';
+var versionApiUri = 'http://cmpaas.org/v1/versions';
+var followApiUri = 'http://cmpaas.org/v1/follow';
 
 
 /***/ }),

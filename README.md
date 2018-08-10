@@ -46,7 +46,7 @@ Server running at port 3000
 
 ## Documentation
 
- after running, navigate through the browser to the URL "http://localhost:3000/v1/docs" to see all API's documentation.
+ after running, navigate through the browser to the URL "http://cmpaas.org/v1/docs" to see all API's documentation.
 
 ### Todos
 
