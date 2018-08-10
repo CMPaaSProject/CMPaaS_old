@@ -45,4 +45,9 @@ consign({cwd: 'app'})
     .then('swagger')
     .into(app);
 
+app.get('/*', (req,res) => {
+    res.status( 200 ).set( { 'content-type': 'text/html; charset=utf-8'})
+    .sendfile('./public/index.html');
+});
+
 module.exports = app;
