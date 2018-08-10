@@ -7,6 +7,10 @@ module.exports = app => {
         .post(authApi.authRequired, api.create)
         .get(authApi.authRequired, authApi.adminRequired, api.list);
     
+    app
+        .route(app.get('mapsApiRoute')+'/:id')
+        .get(api.specificMap);
+    
         app
             .route(app.get('mapsApiRoute')+'/:mapId/versions')
             .post(api.createVersion);

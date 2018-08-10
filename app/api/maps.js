@@ -48,6 +48,14 @@ module.exports = app => {
             .then(maps => { res.json(maps), err => res.status(500).json(error.parse('maps-2', err))});
     }
 
+    api.specificMap = (req, res) => {
+        mapModel
+            .findById(req.params.id)
+            .then(map => {
+                res.json(map);
+            })
+    }
+
     api.createVersion = (req, res) => {
         let newVersion = {
             content: req.body

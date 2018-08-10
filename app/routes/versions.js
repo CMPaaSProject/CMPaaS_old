@@ -5,4 +5,8 @@ module.exports = app => {
     app
         .route(app.get('versionsApiRoute'))
         .get(authApi.authRequired, api.list);
+    
+    app
+        .route(app.get('versionsApiRoute')+'/:id')
+        .get(api.specificVersion);
 }

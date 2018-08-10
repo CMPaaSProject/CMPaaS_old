@@ -12,5 +12,13 @@ module.exports = app => {
             });
     }
 
+    api.specificVersion = (req, res) => {
+        versionModel
+            .findById(req.params.id)
+            .then(version => {
+                res.json(version);
+            })
+    }
+
     return api;
 }
