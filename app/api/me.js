@@ -10,6 +10,25 @@ module.exports = app => {
         res.json(req.user);
     }
 
+    api.dashboard = (req, res) => {
+        mapModel
+            .find({"author._id": req.user._id})
+            .sort({'last_update':-1})
+            .limit(3)
+            .then(maps => {
+                maps.forEach((m, i) => {
+                    maps[i].versions.forEach((v, j) => {
+                        versionModel
+                            .findById(v._id)
+                            .then(version => {
+                                maps[i].versions[j] = version;
+                                if((i == maps.length - 1) && (j == maps[i].versions.length - 1)) res.json(maps);
+                            });
+                    });
+                });
+            });
+    };
+
     api.myMaps = (req, res) => {
         let order = {};
         req.query.orderBy ? order[req.query.orderBy] = -1 : order = {};

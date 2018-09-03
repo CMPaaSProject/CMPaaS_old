@@ -78,7 +78,7 @@ module.exports = app => {
                         map.save();
 
                         res.status(201).json({
-                            userMessage: 'Version was successfully created',
+                            userMessage: 'The new version was successfully created',
                             version
                         });
                     });
