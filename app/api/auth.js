@@ -16,6 +16,16 @@ module.exports = app => {
                 user = user.toObject();
                 delete user.password;
                 user.token = token;
+                user.stats = {
+                    maps: user.maps.length,
+                    groups: user.groups.length,
+                    following: user.following.length,
+                    followers: user.followers.length
+                };
+                delete user.maps;
+                delete user.groups;
+                delete user.following;
+                delete user.followers;
                 res.status(200).json({userMessage: 'Login success', user});
 
             }
