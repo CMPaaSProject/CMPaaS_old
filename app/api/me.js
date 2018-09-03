@@ -16,15 +16,20 @@ module.exports = app => {
             .sort({'last_update':-1})
             .limit(3)
             .then(maps => {
+                let arr = [];
+                let count = 0;
                 maps.forEach((m, i) => {
-                    maps[i].versions.forEach((v, j) => {
-                        versionModel
-                            .findById(v._id)
-                            .then(version => {
-                                maps[i].versions[j] = version;
-                                if((i == maps.length - 1) && (j == maps[i].versions.length - 1)) res.json(maps);
-                            });
-                    });
+                    versionModel
+                        .find({"map._id": m._id})
+                        .sort({'last_update': -1})
+                        .limit(1)
+                        .then(version => {
+                            let obj = m.toObject();
+                            obj.versions = version;
+                            arr[i] = obj;
+                            count++;
+                            if(count == maps.length) res.json(arr);
+                        });
                 });
             });
     };
