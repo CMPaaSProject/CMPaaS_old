@@ -22,10 +22,6 @@ module.exports = app => {
                     following: user.following.length,
                     followers: user.followers.length
                 };
-                delete user.maps;
-                delete user.groups;
-                delete user.following;
-                delete user.followers;
                 res.status(200).json({userMessage: 'Login success', user});
 
             }
