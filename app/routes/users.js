@@ -8,6 +8,10 @@ module.exports = app => {
         .get(authApi.authRequired, api.list);
     
     app
+        .route(app.get('usersApiRoute')+'/search')
+        .get(api.search)
+    
+    app
         .route(app.get('usersApiRoute')+'/:id')
         .get(api.specificUser);
     

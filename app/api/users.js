@@ -58,5 +58,13 @@ module.exports = app => {
             .then(users => { res.json(users), err => res.status(500).json(error.parse('users-4', err))});
     }
 
+    api.search = (req, res) => {
+        userModel
+            .find(req.query).select('-password')
+            .then(user => {
+                res.json(user), err => res.status(500).json(error.parse('users-4', err))
+            });
+    }
+
     return api;
 }
