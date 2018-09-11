@@ -17,4 +17,8 @@ module.exports = app => {
     app
         .route(app.get('meApiRoute')+'/versions')
         .get(authApi.authRequired, api.myVersions);
+    
+    app
+        .route(app.get('meApiRoute')+'/groups')
+        .get(authApi.authRequired, api.myGroups)
 }

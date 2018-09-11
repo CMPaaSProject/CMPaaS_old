@@ -2,6 +2,7 @@ module.exports = app => {
     const userModel = require('mongoose').model('User');
     const mapModel = require('mongoose').model('Map');
     const versionModel = require('mongoose').model('Version');
+    const groupModel = require('mongoose').model('Group');
 
     const api = {};
     const error = app.errors.users;
@@ -51,6 +52,12 @@ module.exports = app => {
             .then(versions => {
                 res.json(versions);
             });
+    }
+
+    api.myGroups = (req, res) => {
+        groupModel
+            .find({"admin._id": req.user._id})
+            .then(groups => res.json(groups), error => console.log(error));
     }
 
 

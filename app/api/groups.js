@@ -16,6 +16,7 @@ module.exports = app => {
                         href: app.get('groupsApiRoute') + '/' + group._id
                     }
                     group.admin = req.user;
+                    group.users = [req.user];
                     group.save();
                     userModel
                         .findById(req.user._id)
