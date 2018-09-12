@@ -40,6 +40,83 @@ module.exports = app => {
                 }
             }
         },
+        permissions: {
+            publicPermission:{
+                canView: {
+                    type: Boolean
+                },
+                canFork: {
+                    type: Boolean
+                },
+                canEdit: {
+                    type: Boolean
+                }
+            },
+            groups: [
+                {
+                    group: {
+                        _id: {
+                            type: mongoose.Schema.Types.ObjectId,
+                            ref: 'Group'
+                        },
+                        name: {
+                            type: String
+                        },
+                        link: {
+                            rel: {
+                                type: String
+                            },
+                            href: {
+                                type: String
+                            }
+                        }
+                    },
+                    permission: {
+                        canView: {
+                            type: Boolean
+                        },
+                        canFork: {
+                            type: Boolean
+                        },
+                        canEdit: {
+                            type: Boolean
+                        }
+                    }
+                }
+            ],
+            users: [
+                {
+                    group: {
+                        _id: {
+                            type: mongoose.Schema.Types.ObjectId,
+                            ref: 'User'
+                        },
+                        username: {
+                            type: String
+                        },
+                        link: {
+                            rel: {
+                                type: String
+                            },
+                            href: {
+                                type: String
+                            }
+                        }
+                    },
+                    permission: {
+                        canView: {
+                            type: Boolean
+                        },
+                        canFork: {
+                            type: Boolean
+                        },
+                        canEdit: {
+                            type: Boolean
+                        }
+                    }
+                }
+            ]
+        },
         link: {
             rel: {
                 type: String
@@ -47,10 +124,6 @@ module.exports = app => {
             href: {
                 type: String
             }
-        },
-        isPublic: {
-            type: Boolean,
-            default: true
         },
         versions: [
             {

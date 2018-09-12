@@ -8,7 +8,15 @@ module.exports = app => {
     const error = app.errors.users;
 
     api.me = (req, res) => {
-        res.json(req.user);
+        let user = req.user.toObject();
+        delete user.password;
+        user.stats = {
+            maps: user.maps.length,
+            groups: user.groups.length,
+            following: user.following.length,
+            followers: user.followers.length
+        };
+        res.json(user);
     }
 
     api.dashboard = (req, res) => {
