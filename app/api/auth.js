@@ -10,7 +10,7 @@ module.exports = app => {
     api.authenticate = (req, res, next) => {
         passport.authenticate('local', function(err, user, info){
             if(err) res.status(500).json(error.parse('auth-1', info));
-            else if(!user) res.status(401).json(error.parse('auth-2', info));
+            else if(!user) res.status(401).json(error.parse('auth-2', new Error('User not found.')));
             else {
                 let token = jwt.sign({id: user._id}, app.get('jwt_secret'));
                 user = user.toObject();
@@ -81,7 +81,7 @@ module.exports = app => {
     api.authRequired = (req, res, next) => {
         passport.authenticate('jwt', { session: false }, function(err, user, info){
             if(err) res.status(500).json(error.parse('auth-1', info));
-            else if(!user) res.status(401).json(error.parse('auth-2', info));
+            else if(!user) res.status(401).json(error.parse('auth-2', new Error('User not found.')));
             else {
                 req.user = user;
                 next();
