@@ -146,6 +146,14 @@ module.exports = app => {
                     type: String
                 }
             }
+        }],
+        notifications: [{
+            message: {
+                type: String
+            },
+            readed: {
+                type: Boolean
+            }
         }]
     });
 
