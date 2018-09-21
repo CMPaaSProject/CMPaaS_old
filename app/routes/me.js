@@ -1,6 +1,15 @@
 module.exports = app => {
     const api = app.api.me;
     const authApi = app.api.auth;
+    const multer = require('multer');
+    var storage = multer.diskStorage({
+        destination: __dirname+"../../../public/profiles/",
+        filename: function(req, file, cb){
+            let extension = file.originalname.split('.')[1];
+            cb(null, req.user._id+'.'+extension);
+        }
+    });
+    const upload = multer ({storage: storage});
 
     app
         .route(app.get('meApiRoute'))
@@ -21,4 +30,8 @@ module.exports = app => {
     app
         .route(app.get('meApiRoute')+'/groups')
         .get(authApi.authRequired, api.myGroups)
+    
+    app
+        .route(app.get('meApiRoute')+'/profileImage')
+        .post(authApi.authRequired, upload.single('file'), api.myProfileImage)
 }

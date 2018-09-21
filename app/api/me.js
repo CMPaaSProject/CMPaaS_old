@@ -3,6 +3,7 @@ module.exports = app => {
     const mapModel = require('mongoose').model('Map');
     const versionModel = require('mongoose').model('Version');
     const groupModel = require('mongoose').model('Group');
+    
 
     const api = {};
     const error = app.errors.users;
@@ -67,6 +68,17 @@ module.exports = app => {
             .find({"admin._id": req.user._id})
             .then(groups => res.json(groups), error => console.log(error));
     }
+
+    api.myProfileImage = (req, res) => {
+        userModel
+            .findById(req.user._id)
+            .then(user => {
+                user.profile_picture = "http://localhost:3000/profiles/"+req.file.filename;
+                user.save();
+                res.status(200).json({url: user.profile_picture});
+            }, error => console.log(error));
+        
+    };
 
 
     return api;
