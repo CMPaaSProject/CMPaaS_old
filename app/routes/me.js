@@ -2,18 +2,21 @@ module.exports = app => {
     const api = app.api.me;
     const authApi = app.api.auth;
     const multer = require('multer');
+    const uuidv4 = require('uuid/v4');
     var storage = multer.diskStorage({
         destination: __dirname+"../../../public/profiles/",
         filename: function(req, file, cb){
             let extension = file.originalname.split('.')[1];
-            cb(null, req.user._id+'.'+extension);
+            let fileName = uuidv4();
+            cb(null, fileName+'.'+extension);
         }
     });
     const upload = multer ({storage: storage});
 
     app
         .route(app.get('meApiRoute'))
-        .get(authApi.authRequired, api.me);
+        .get(authApi.authRequired, api.me)
+        .put(authApi.authRequired, api.update);
     
     app
         .route(app.get('meApiRoute')+'/maps')

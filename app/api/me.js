@@ -80,6 +80,13 @@ module.exports = app => {
         
     };
 
+    api.update = (req, res) => {
+        userModel
+            .findByIdAndUpdate(req.user._id, req.body, { new: true }).select('-password')
+            .then(user => {
+                res.json(user);
+            });
+    }
 
     return api;
 }
