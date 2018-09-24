@@ -154,7 +154,10 @@ module.exports = app => {
             readed: {
                 type: Boolean
             }
-        }]
+        }],
+        description: {
+            type: String
+        }
     });
 
     schema.pre('save', function(next){
