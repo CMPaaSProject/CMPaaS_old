@@ -10,8 +10,7 @@
 var map = {
 	"./administration/administration.module": [
 		"./src/app/administration/administration.module.ts",
-		"administration-administration-module~edit-edit-module~forms-forms-module~view-view-module",
-		"common",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
 		"administration-administration-module"
 	],
 	"./calendar/calendar.module": [
@@ -24,28 +23,33 @@ var map = {
 	],
 	"./components/components.module": [
 		"./src/app/components/components.module.ts",
-		"components-components-module"
+		"components-components-module~view-view-module"
 	],
 	"./dashboard/dashboard.module": [
 		"./src/app/dashboard/dashboard.module.ts",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
+		"dashboard-dashboard-module~edit-edit-module~manage-manage-module",
 		"dashboard-dashboard-module"
 	],
 	"./edit/edit.module": [
 		"./src/app/edit/edit.module.ts",
-		"administration-administration-module~edit-edit-module~forms-forms-module~view-view-module",
-		"common",
-		"edit-edit-module"
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
+		"dashboard-dashboard-module~edit-edit-module~manage-manage-module"
 	],
 	"./findpage/find.module": [
 		"./src/app/findpage/find.module.ts",
-		"common",
 		"findpage-find-module"
 	],
 	"./forms/forms.module": [
 		"./src/app/forms/forms.module.ts",
-		"administration-administration-module~edit-edit-module~forms-forms-module~view-view-module",
-		"common",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
 		"forms-forms-module"
+	],
+	"./manage/manage.module": [
+		"./src/app/manage/manage.module.ts",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
+		"dashboard-dashboard-module~edit-edit-module~manage-manage-module",
+		"manage-manage-module"
 	],
 	"./maps/maps.module": [
 		"./src/app/maps/maps.module.ts",
@@ -53,7 +57,6 @@ var map = {
 	],
 	"./pages/pages.module": [
 		"./src/app/pages/pages.module.ts",
-		"common",
 		"pages-pages-module"
 	],
 	"./tables/tables.module": [
@@ -64,14 +67,19 @@ var map = {
 		"./src/app/timeline/timeline.module.ts",
 		"timeline-timeline-module"
 	],
+	"./tools/tools.module": [
+		"./src/app/tools/tools.module.ts",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
+		"tools-tools-module"
+	],
 	"./userpage/user.module": [
 		"./src/app/userpage/user.module.ts",
 		"userpage-user-module"
 	],
 	"./view/view.module": [
 		"./src/app/view/view.module.ts",
-		"administration-administration-module~edit-edit-module~forms-forms-module~view-view-module",
-		"common",
+		"administration-administration-module~dashboard-dashboard-module~edit-edit-module~forms-forms-module~~1b8c593a",
+		"components-components-module~view-view-module",
 		"view-view-module"
 	],
 	"./widgets/widgets.module": [
@@ -98,6 +106,33 @@ webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 };
 webpackAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ "./src/app/_models/socketMessage.model.ts":
+/*!************************************************!*\
+  !*** ./src/app/_models/socketMessage.model.ts ***!
+  \************************************************/
+/*! exports provided: SocketMessage, SocketResponse */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SocketMessage", function() { return SocketMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SocketResponse", function() { return SocketResponse; });
+var SocketMessage = /** @class */ (function () {
+    function SocketMessage() {
+    }
+    return SocketMessage;
+}());
+
+var SocketResponse = /** @class */ (function () {
+    function SocketResponse() {
+    }
+    return SocketResponse;
+}());
+
+
 
 /***/ }),
 
@@ -230,6 +265,9 @@ var AuthService = /** @class */ (function () {
     }
     AuthService.prototype.getCurrentUser = function () {
         return localStorage.getItem('currentUser');
+    };
+    AuthService.prototype.setCurrentUser = function (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
     };
     AuthService.prototype.updateUser = function () {
         var _this = this;
@@ -426,11 +464,56 @@ var FollowService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_services/group/group.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/_services/group/group.service.ts ***!
+  \**************************************************/
+/*! exports provided: GroupService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupService", function() { return GroupService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _global_vars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global.vars */ "./src/app/global.vars.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var GroupService = /** @class */ (function () {
+    function GroupService(http) {
+        this.http = http;
+    }
+    GroupService.prototype.create = function (group) {
+        return this.http.post(_global_vars__WEBPACK_IMPORTED_MODULE_1__["groupApiUri"], group);
+    };
+    GroupService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], GroupService);
+    return GroupService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_services/index.service.ts":
 /*!********************************************!*\
   !*** ./src/app/_services/index.service.ts ***!
   \********************************************/
-/*! exports provided: UserService, MapService, AuthService, VersionService, MeService, ModelService */
+/*! exports provided: UserService, MapService, AuthService, VersionService, MeService, ModelService, GroupService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -452,6 +535,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _model_model_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./model/model.service */ "./src/app/_services/model/model.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModelService", function() { return _model_model_service__WEBPACK_IMPORTED_MODULE_5__["ModelService"]; });
+
+/* harmony import */ var _group_group_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./group/group.service */ "./src/app/_services/group/group.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "GroupService", function() { return _group_group_service__WEBPACK_IMPORTED_MODULE_6__["GroupService"]; });
+
 
 
 
@@ -548,6 +635,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_vars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global.vars */ "./src/app/global.vars.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/_services/auth/auth.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -561,18 +650,45 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var MeService = /** @class */ (function () {
-    function MeService(http) {
+    function MeService(http, authService) {
         this.http = http;
+        this.authService = authService;
+        this.updated = false;
     }
-    MeService.prototype.updateDashboardMaps = function () {
+    MeService.prototype.getDashboardInfo = function () {
+        var _this = this;
+        var savedMapArr = JSON.parse(this.authService.getCurrentUser()).last_maps;
+        if (this.updated && savedMapArr != null) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(savedMapArr);
+        }
+        else
+            return this.http.get(_global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"] + '/dashboard')
+                .map(function (maps) {
+                var currentUser = JSON.parse(_this.authService.getCurrentUser());
+                currentUser.last_maps = maps;
+                _this.authService.setCurrentUser(currentUser);
+                _this.updated = true;
+                return maps;
+            });
+    };
+    MeService.prototype.isUpdated = function () {
+        return this.updated;
+    };
+    MeService.prototype.updateDashboardInfo = function () {
+        this.updated = false;
+        this.getDashboardInfo();
+    };
+    MeService.prototype.getMaps = function () {
         return this.http.get(_global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"] + '/maps?orderBy=last_update&limit=3')
             .map(function (maps) {
             localStorage.setItem('currentDashboardMaps', JSON.stringify(maps));
             return maps;
         });
     };
-    MeService.prototype.updateDashboardMapsVersions = function (maps) {
+    MeService.prototype.getMapsVersions = function (maps) {
         var uri = _global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"] + '/versions?';
         maps.forEach(function (map) {
             uri += 'mapId=' + map._id + '&';
@@ -583,9 +699,31 @@ var MeService = /** @class */ (function () {
             return versions;
         });
     };
+    MeService.prototype.getGroups = function () {
+        return this.http.get(_global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"] + '/groups');
+    };
+    MeService.prototype.sendProfileImage = function (img) {
+        var uploadData = new FormData();
+        uploadData.append('file', img);
+        return this.http.post(_global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"] + '/profileImage', uploadData).map(function (res) {
+            var user = JSON.parse(localStorage.getItem('currentUser'));
+            user.profile_picture = res.url;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            return res;
+        });
+    };
+    MeService.prototype.updateInfo = function (data) {
+        return this.http.put(_global_vars__WEBPACK_IMPORTED_MODULE_1__["meApiUri"], data).map(function (res) {
+            var u = JSON.parse(localStorage.getItem('currentUser'));
+            res.token = u.token;
+            res.stats = u.stats;
+            localStorage.setItem('currentUser', JSON.stringify(res));
+            return res;
+        });
+    };
     MeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], MeService);
     return MeService;
 }());
@@ -615,6 +753,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var ModelService = /** @class */ (function () {
     function ModelService() {
     }
+    ModelService.prototype.getCurrentModel = function () {
+        return localStorage.getItem('currentModel');
+    };
+    ModelService.prototype.setCurrentModel = function (model) {
+        localStorage.setItem('currentModel', JSON.stringify(model));
+    };
     ModelService.prototype.removeCurrentModel = function () {
         localStorage.removeItem('currentModel');
     };
@@ -622,6 +766,179 @@ var ModelService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
     ], ModelService);
     return ModelService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/sidebar/sidebar.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/_services/sidebar/sidebar.service.ts ***!
+  \******************************************************/
+/*! exports provided: SidebarService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarService", function() { return SidebarService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/_services/auth/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SidebarService = /** @class */ (function () {
+    function SidebarService(authService) {
+        this.authService = authService;
+        this.update = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    ;
+    SidebarService.prototype.updateUserProfile = function () {
+        var user = JSON.parse(this.authService.getCurrentUser());
+        this.update.emit(user.profile_picture);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], SidebarService.prototype, "update", void 0);
+    SidebarService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+    ], SidebarService);
+    return SidebarService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/socketservice/socket.service.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/_services/socketservice/socket.service.ts ***!
+  \***********************************************************/
+/*! exports provided: SocketService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SocketService", function() { return SocketService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _websocket_websocket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../websocket/websocket.service */ "./src/app/_services/websocket/websocket.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SocketService = /** @class */ (function () {
+    function SocketService(wsService) {
+        this.wsService = wsService;
+    }
+    SocketService.prototype.send = function (msg) {
+        this.messages.next(msg);
+    };
+    SocketService.prototype.disconnect = function () {
+        this.wsService.disconnect();
+    };
+    SocketService.prototype.connect = function () {
+        this.messages = this.wsService
+            .connect()
+            .map(function (response) {
+            return response;
+        });
+    };
+    SocketService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_websocket_websocket_service__WEBPACK_IMPORTED_MODULE_1__["WebsocketService"]])
+    ], SocketService);
+    return SocketService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/speech2map/speech-recognition.service.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/_services/speech2map/speech-recognition.service.ts ***!
+  \********************************************************************/
+/*! exports provided: SpeechRecognitionService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeechRecognitionService", function() { return SpeechRecognitionService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs-compat/_esm5/Rx.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SpeechRecognitionService = /** @class */ (function () {
+    function SpeechRecognitionService(zone) {
+        this.zone = zone;
+    }
+    SpeechRecognitionService.prototype.record = function () {
+        var _this = this;
+        return rxjs_Rx__WEBPACK_IMPORTED_MODULE_1__["Observable"].create(function (observer) {
+            var webkitSpeechRecognition = window.webkitSpeechRecognition;
+            _this.speechRecognition = new webkitSpeechRecognition();
+            _this.speechRecognition.continuous = true;
+            _this.speechRecognition.interimResults = true;
+            _this.speechRecognition.lang = 'pt-br';
+            _this.speechRecognition.maxAlternatives = 1;
+            _this.speechRecognition.onresult = function (speech) {
+                _this.zone.run(function () {
+                    observer.next(speech.results[speech.results.length - 1][0].transcript);
+                });
+            };
+            _this.speechRecognition.onerror = function (error) {
+                console.log('onerror');
+                observer.error(error);
+            };
+            _this.speechRecognition.onend = function () {
+                console.log('onend');
+                observer.complete();
+            };
+            _this.speechRecognition.start();
+            console.log("Say something - We are listening !!!");
+        });
+    };
+    SpeechRecognitionService.prototype.DestroySpeechObject = function () {
+        if (this.speechRecognition)
+            this.speechRecognition.abort();
+    };
+    SpeechRecognitionService.prototype.stop = function () {
+        if (this.speechRecognition)
+            this.speechRecognition.stop();
+    };
+    SpeechRecognitionService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]])
+    ], SpeechRecognitionService);
+    return SpeechRecognitionService;
 }());
 
 
@@ -668,6 +985,9 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getUserData = function (userId) {
         return this.http.get(_global_vars__WEBPACK_IMPORTED_MODULE_1__["userApiUri"] + '/' + userId);
     };
+    UserService.prototype.searchByUserName = function (userName) {
+        return this.http.get(_global_vars__WEBPACK_IMPORTED_MODULE_1__["userApiUri"] + '/search?username=' + userName);
+    };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -693,7 +1013,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_vars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global.vars */ "./src/app/global.vars.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
-/* harmony import */ var _index_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../index.service */ "./src/app/_services/index.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/_services/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -739,9 +1059,144 @@ var VersionService = /** @class */ (function () {
     };
     VersionService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _index_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], VersionService);
     return VersionService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/websocket/websocket.service.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/_services/websocket/websocket.service.ts ***!
+  \**********************************************************/
+/*! exports provided: WebsocketService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebsocketService", function() { return WebsocketService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm5/Observable.js");
+/* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs-compat/_esm5/Rx.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_models/socketMessage.model */ "./src/app/_models/socketMessage.model.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var WebsocketService = /** @class */ (function () {
+    function WebsocketService() {
+    }
+    WebsocketService.prototype.connect = function () {
+        var _this = this;
+        this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1__(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].ws_url);
+        var observable = new rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__["Observable"](function (observer) {
+            _this.socket.on('newMessage', function (data) {
+                var res = new _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_5__["SocketResponse"]();
+                res.type = 'newMessage';
+                res.content = data;
+                observer.next(res);
+            });
+            _this.socket.on('updateModel', function (data) {
+                var res = new _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_5__["SocketResponse"]();
+                res.type = 'updateModel';
+                res.content = data;
+                observer.next(res);
+            });
+            return function () {
+                _this.socket.disconnect();
+            };
+        });
+        var observer = {
+            next: function (data) {
+                switch (data.type) {
+                    case 'message':
+                        _this.socket.emit(data.type, data.content);
+                        break;
+                    case 'join':
+                        _this.socket.emit(data.type, { 'username': data.username, 'roomId': data.content }, function (err) {
+                            if (err) {
+                                $.notify({
+                                    icon: 'notifications',
+                                    message: "<b>Error: </b> " + err + "."
+                                }, {
+                                    type: 'danger',
+                                    timer: 2000,
+                                    placement: {
+                                        from: 'top',
+                                        align: 'right'
+                                    },
+                                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} alert-with-icon" role="alert">' +
+                                        '<button mat-raised-button type="button" aria-hidden="true" class="close" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
+                                        '<i class="material-icons" data-notify="icon">notifications</i> ' +
+                                        '<span data-notify="title">{1}</span> ' +
+                                        '<span data-notify="message">{2}</span>' +
+                                        '<div class="progress" data-notify="progressbar">' +
+                                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                        '</div>' +
+                                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                        '</div>'
+                                });
+                            }
+                            else {
+                                $.notify({
+                                    icon: 'notifications',
+                                    message: 'You are connect in <b>Real Time CMPaaS Editor</b> - you can share this link with your friends.'
+                                }, {
+                                    type: 'success',
+                                    timer: 2000,
+                                    placement: {
+                                        from: 'top',
+                                        align: 'right'
+                                    },
+                                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} alert-with-icon" role="alert">' +
+                                        '<button mat-raised-button type="button" aria-hidden="true" class="close" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
+                                        '<i class="material-icons" data-notify="icon">notifications</i> ' +
+                                        '<span data-notify="title">{1}</span> ' +
+                                        '<span data-notify="message">{2}</span>' +
+                                        '<div class="progress" data-notify="progressbar">' +
+                                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                        '</div>' +
+                                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                                        '</div>'
+                                });
+                            }
+                        });
+                        break;
+                    case 'sendModel':
+                        _this.socket.emit(data.type, data.content);
+                        break;
+                }
+            },
+        };
+        return rxjs_Rx__WEBPACK_IMPORTED_MODULE_3__["Subject"].create(observer, observable);
+    };
+    WebsocketService.prototype.disconnect = function () {
+        return this.socket.disconnect();
+    };
+    WebsocketService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], WebsocketService);
+    return WebsocketService;
 }());
 
 
@@ -755,7 +1210,7 @@ var VersionService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet></router-outlet>\n"
+module.exports = "\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -845,12 +1300,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./_services/index.service */ "./src/app/_services/index.service.ts");
 /* harmony import */ var _services_auth_jwt_interceptor__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./_services/auth/jwt.interceptor */ "./src/app/_services/auth/jwt.interceptor.ts");
 /* harmony import */ var _services_follow_follow_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./_services/follow/follow.service */ "./src/app/_services/follow/follow.service.ts");
+/* harmony import */ var _speech2map_speech_recognition_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./speech2map/speech-recognition.module */ "./src/app/speech2map/speech-recognition.module.ts");
+/* harmony import */ var _speech2map_speech_recognition_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./speech2map/speech-recognition.component */ "./src/app/speech2map/speech-recognition.component.ts");
+/* harmony import */ var _services_speech2map_speech_recognition_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./_services/speech2map/speech-recognition.service */ "./src/app/_services/speech2map/speech-recognition.service.ts");
+/* harmony import */ var _services_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./_services/sidebar/sidebar.service */ "./src/app/_services/sidebar/sidebar.service.ts");
+/* harmony import */ var _services_websocket_websocket_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./_services/websocket/websocket.service */ "./src/app/_services/websocket/websocket.service.ts");
+/* harmony import */ var _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./_services/socketservice/socket.service */ "./src/app/_services/socketservice/socket.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
 
 
 
@@ -935,7 +1402,10 @@ var AppModule = /** @class */ (function () {
                 _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_11__["NavbarModule"],
                 _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_10__["FooterModule"],
                 _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_12__["FixedpluginModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientModule"],
+                _speech2map_speech_recognition_module__WEBPACK_IMPORTED_MODULE_24__["SpeechRecognitionModule"]
+            ], entryComponents: [
+                _speech2map_speech_recognition_component__WEBPACK_IMPORTED_MODULE_25__["SpeechRecognitionComponent"]
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
@@ -953,6 +1423,11 @@ var AppModule = /** @class */ (function () {
                 _services_index_service__WEBPACK_IMPORTED_MODULE_21__["MeService"],
                 _services_auth_lock_guard__WEBPACK_IMPORTED_MODULE_18__["LockGuard"],
                 _services_auth_admin_guard__WEBPACK_IMPORTED_MODULE_19__["AdminGuard"],
+                _services_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_27__["SidebarService"],
+                _services_speech2map_speech_recognition_service__WEBPACK_IMPORTED_MODULE_26__["SpeechRecognitionService"],
+                _services_index_service__WEBPACK_IMPORTED_MODULE_21__["GroupService"],
+                _services_websocket_websocket_service__WEBPACK_IMPORTED_MODULE_28__["WebsocketService"],
+                _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_29__["SocketService"],
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HTTP_INTERCEPTORS"],
                     useClass: _services_auth_jwt_interceptor__WEBPACK_IMPORTED_MODULE_22__["JwtInterceptor"],
@@ -1007,8 +1482,14 @@ var AppRoutes = [
                 loadChildren: './administration/administration.module#AdministrationModule',
                 canActivate: [_services_auth_admin_guard__WEBPACK_IMPORTED_MODULE_4__["AdminGuard"]]
             }, {
+                path: 'manage',
+                loadChildren: './manage/manage.module#ManageModule'
+            }, {
                 path: 'edit',
                 loadChildren: './edit/edit.module#EditModule'
+            }, {
+                path: 'tools',
+                loadChildren: './tools/tools.module#ToolsModule'
             }, {
                 path: 'view',
                 loadChildren: './view/view.module#ViewModule'
@@ -1072,20 +1553,29 @@ module.exports = "<div id=\"map\" #myDiagramDiv></div>"
 /*!*********************************************************!*\
   !*** ./src/app/edit/conceptmap/conceptmap.component.ts ***!
   \*********************************************************/
-/*! exports provided: myDiagram, ConceptMapComponent, resetModel */
+/*! exports provided: myDiagram, socket, ConceptMapComponent, loadModel, resetModel, initListener, stopListener, realTimeUpdateModel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "myDiagram", function() { return myDiagram; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "socket", function() { return socket; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConceptMapComponent", function() { return ConceptMapComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadModel", function() { return loadModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetModel", function() { return resetModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initListener", function() { return initListener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopListener", function() { return stopListener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "realTimeUpdateModel", function() { return realTimeUpdateModel; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var gojs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gojs */ "./node_modules/gojs/release/go.js");
 /* harmony import */ var gojs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(gojs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services/index.service */ "./src/app/_services/index.service.ts");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_models/socketMessage.model */ "./src/app/_models/socketMessage.model.ts");
+/* harmony import */ var _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_services/socketservice/socket.service */ "./src/app/_services/socketservice/socket.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1100,13 +1590,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var myDiagram;
+
+
+
+var socket;
 var ConceptMapComponent = /** @class */ (function () {
-    function ConceptMapComponent(versionService, modelService) {
+    function ConceptMapComponent(versionService, modelService, s) {
         this.versionService = versionService;
-        this.name = 'GoJS';
+        this.modelService = modelService;
+        this.s = s;
+        socket = s;
     }
     ConceptMapComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
         var conceptNodeTemplate, relationNodeTemplate, normalLinkTemplate, orLinkTemplate, mapTemplate, selectionAdornmentTemplate;
         var $ = gojs__WEBPACK_IMPORTED_MODULE_1__["GraphObject"].make; // for conciseness in defining templates
         // To simplify this code we define a function for creating a context menu button:
@@ -1124,8 +1619,8 @@ var ConceptMapComponent = /** @class */ (function () {
             var fromData = fromNode.data;
             // create a new "State" data object, positioned off to the right of the adorned Node
             var newNode = (fromNode.category == "concept" || fromNode.category == "map") ?
-                { text: "New Relation", loc: "", category: "relation" } :
-                { text: "New Concept", loc: "", category: "concept" };
+                { text: "New Relation", loc: "", category: "relation", error: "" } :
+                { text: "New Concept", loc: "", category: "concept", error: "" };
             var p = fromNode.location.copy();
             p.x += 120;
             newNode.loc = gojs__WEBPACK_IMPORTED_MODULE_1__["Point"].stringify(p); // the "loc" property is a string, not a Point object
@@ -1136,7 +1631,8 @@ var ConceptMapComponent = /** @class */ (function () {
             var nodeData = {
                 from: model.getKeyForNodeData(fromData),
                 to: model.getKeyForNodeData(newNode),
-                category: "normal"
+                category: "normal",
+                error: ''
             };
             // and add the link data to the model
             model.addLinkData(nodeData);
@@ -1159,11 +1655,12 @@ var ConceptMapComponent = /** @class */ (function () {
                 str += "Member of " + d.group;
             else
                 str += "Top-level";
+            str += "\nMore Informations: " + (d.moreInfo ? d.moreInfo : "");
             return str;
         }
         // Define the appearance and behavior for Links:
         function linkInfo(d) {
-            return "Link:\nfrom " + d.from + " to " + d.to;
+            return "Link:\nfrom " + d.from + " to " + d.to + +"\nMore Informations: " + (d.data.moreInfo ? d.data.moreInfo : "");
         }
         // Define the appearance and behavior for Groups:
         function groupInfo(adornment) {
@@ -1179,7 +1676,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 if (part instanceof gojs__WEBPACK_IMPORTED_MODULE_1__["Node"] && part.category == "relation")
                     relations++;
             });
-            return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including: \nLinks: " + links + "\nRelations: " + relations + "\nConcepts: " + (mems - links - relations);
+            return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including: \nLinks: " + links + "\nRelations: " + relations + "\nConcepts: " + (mems - links - relations) + "\nMore Informations: " + (g.data.moreInfo ? g.data.moreInfo : "");
         }
         // Define the behavior for the Diagram background:
         function diagramInfo(model) {
@@ -1224,17 +1721,95 @@ var ConceptMapComponent = /** @class */ (function () {
             else
                 return tonode.data.category == "relation";
         }
+        function checkInconsistence(d) {
+            var message = "";
+            myDiagram.selection.each(function (node) {
+                myDiagram.startTransaction("remove error");
+                var fix = node.data.fix;
+                var error = node.data.error;
+                if ('conceitoRepetido' === error) {
+                    // remove concepts
+                    console.log('remove concepts');
+                }
+                if (fix) {
+                    myDiagram.model.setDataProperty(node.data, "text", fix);
+                }
+                var data = node.data;
+                console.log(data.prevColor);
+                data.category === 'relation' ? myDiagram.model.setDataProperty(data, "textColor", data.prevColor) : myDiagram.model.setDataProperty(data, "stroke", data.prevColor);
+                myDiagram.model.setDataProperty(data, "error", null);
+                myDiagram.model.setDataProperty(data, "textColor", '#333');
+                myDiagram.commitTransaction("remove error");
+            });
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                title: 'Você deseja fazer essa correção?',
+                text: "A frase de liga\u00E7\u00E3o possui um erro de concord\u00E2ncia que pode prejudicar a mensagem da proposi\u00E7\u00E3o. \n            \n            Voc\u00EA pode corrigir para \"possuem\".",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, faça a correção!',
+                cancelButtonText: 'Não, deixe como está',
+                confirmButtonClass: "btn btn-success",
+                cancelButtonClass: "btn btn-danger",
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.value) {
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                        title: 'Corrigido!',
+                        text: 'A inconsistência foi corrigida com sucesso.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.noop);
+                }
+                else {
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                        title: 'Cancelled',
+                        text: 'Your imaginary file is safe :)',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-info",
+                        buttonsStyling: false
+                    }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.noop);
+                }
+            });
+        }
         // a context menu is an Adornment with a bunch of buttons in them
         var partContextMenu = $(gojs__WEBPACK_IMPORTED_MODULE_1__["Adornment"], "Vertical", makeButton("Properties", function (e, obj) {
             var contextmenu = obj.part; // the Button is in the context menu Adornment
             var part = contextmenu.adornedPart; // the adornedPart is the Part that the context menu adorns
             // now can do something with PART, or with its data, or with the Adornment (the context menu)
-            if (part instanceof gojs__WEBPACK_IMPORTED_MODULE_1__["Link"])
-                alert(linkInfo(part.data));
-            else if (part instanceof gojs__WEBPACK_IMPORTED_MODULE_1__["Group"])
-                alert(groupInfo(contextmenu));
-            else
-                alert(nodeInfo(part.data));
+            if (part instanceof gojs__WEBPACK_IMPORTED_MODULE_1__["Link"]) {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                    title: 'Link Informations',
+                    text: linkInfo(part.data),
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonText: 'Ok',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+            }
+            else if (part instanceof gojs__WEBPACK_IMPORTED_MODULE_1__["Group"]) {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                    title: 'Group Informations',
+                    text: groupInfo(contextmenu),
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonText: 'Ok',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+            }
+            else {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                    title: 'Node/Relation Informations',
+                    text: nodeInfo(part.data),
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonText: 'Ok',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                });
+            }
         }, undefined), makeButton("Cut", function (e, obj) { e.diagram.commandHandler.cutSelection(); }, function (o) { return o.diagram.commandHandler.canCutSelection(); }), makeButton("Copy", function (e, obj) { e.diagram.commandHandler.copySelection(); }, function (o) { return o.diagram.commandHandler.canCopySelection(); }), makeButton("Paste", function (e, obj) { e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint); }, function (o) { return o.diagram.commandHandler.canPasteSelection(); }), makeButton("Delete", function (e, obj) { e.diagram.commandHandler.deleteSelection(); }, function (o) { return o.diagram.commandHandler.canDeleteSelection(); }), makeButton("Undo", function (e, obj) { e.diagram.commandHandler.undo(); }, function (o) { return o.diagram.commandHandler.canUndo(); }), makeButton("Redo", function (e, obj) { e.diagram.commandHandler.redo(); }, function (o) { return o.diagram.commandHandler.canRedo(); }), makeButton("Group", function (e, obj) { e.diagram.commandHandler.groupSelection(); }, function (o) { return o.diagram.commandHandler.canGroupSelection(); }), makeButton("Ungroup", function (e, obj) { e.diagram.commandHandler.ungroupSelection(); }, function (o) { return o.diagram.commandHandler.canUngroupSelection(); }));
         myDiagram =
             $(gojs__WEBPACK_IMPORTED_MODULE_1__["Diagram"], this.element.nativeElement, // create a Diagram for the DIV HTML element
@@ -1246,7 +1821,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 "undoManager.isEnabled": true,
                 "clickCreatingTool.archetypeNodeData": { text: "New Concept", category: "concept" },
                 "linkingTool.archetypeLinkData": { category: "normal" },
-                "commandHandler.archetypeGroupData": { text: "New Map", isGroup: true, color: "blue", category: "map" } //ctrl+G to group
+                "commandHandler.archetypeGroupData": { text: "New Map", isGroup: true, category: "map" },
             });
         // provide a tooltip for the background of the Diagram, when not over any Part
         myDiagram.toolTip =
@@ -1260,7 +1835,7 @@ var ConceptMapComponent = /** @class */ (function () {
             $(gojs__WEBPACK_IMPORTED_MODULE_1__["Adornment"], "Vertical", makeButton("Paste", function (e, obj) { e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint); }, function (o) { return o.diagram.commandHandler.canPasteSelection(); }), makeButton("Undo", function (e, obj) { e.diagram.commandHandler.undo(); }, function (o) { return o.diagram.commandHandler.canUndo(); }), makeButton("Redo", function (e, obj) { e.diagram.commandHandler.redo(); }, function (o) { return o.diagram.commandHandler.canRedo(); }));
         conceptNodeTemplate =
             $(gojs__WEBPACK_IMPORTED_MODULE_1__["Node"], "Auto", // the Shape will go around the TextBlock
-            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("location", "loc", gojs__WEBPACK_IMPORTED_MODULE_1__["Point"].parse).makeTwoWay(gojs__WEBPACK_IMPORTED_MODULE_1__["Point"].stringify), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], "Rectangle", {
+            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("location", "loc", gojs__WEBPACK_IMPORTED_MODULE_1__["Point"].parse).makeTwoWay(gojs__WEBPACK_IMPORTED_MODULE_1__["Point"].stringify), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], "RoundedRectangle", {
                 portId: "",
                 strokeWidth: 1,
                 fromLinkable: true,
@@ -1274,7 +1849,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 stroke: "black"
             }, 
             // Shape.fill is bound to Node.data.color
-            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("fill", "color")), $(gojs__WEBPACK_IMPORTED_MODULE_1__["TextBlock"], {
+            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("fill", "color").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "stroke").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "", function (data) { return data.error ? "red" : data.stroke ? data.stroke : "black"; }), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("strokeWidth", "error", function (t) { return t ? 3 : 1; })), $(gojs__WEBPACK_IMPORTED_MODULE_1__["TextBlock"], {
                 font: "bold 12px sans-serif",
                 stroke: '#333',
                 margin: 6,
@@ -1282,7 +1857,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 editable: true // allow in-place editing by user
             }, // some room around the text
             // TextBlock.text is bound to Node.data.key
-            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay()), {
+            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "textColor").makeTwoWay()), {
                 toolTip: $(gojs__WEBPACK_IMPORTED_MODULE_1__["Adornment"], "Auto", $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], { fill: "#FFFFCC" }), $(gojs__WEBPACK_IMPORTED_MODULE_1__["TextBlock"], { margin: 4 }, // the tooltip shows the result of calling nodeInfo(data)
                 new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "", nodeInfo))),
                 // this context menu Adornment is shared by all nodes
@@ -1310,7 +1885,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 editable: true
             }, // some room around the text
             // TextBlock.text is bound to Node.data.key
-            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay()), {
+            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "textColor").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "", function (data) { return data.error ? "red" : data.textColor ? data.textColor : "#333"; }), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("font", "error", function (t) { return t ? "bold 14px sans-serif" : "bold 12px sans-serif"; })), {
                 toolTip: $(gojs__WEBPACK_IMPORTED_MODULE_1__["Adornment"], "Auto", $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], { fill: "#FFFFCC" }), $(gojs__WEBPACK_IMPORTED_MODULE_1__["TextBlock"], { margin: 4 }, // the tooltip shows the result of calling nodeInfo(data)
                 new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "", nodeInfo))),
                 // this context menu Adornment is shared by all nodes
@@ -1380,8 +1955,11 @@ var ConceptMapComponent = /** @class */ (function () {
                 fromLinkableDuplicates: true,
                 toLinkable: true,
                 toLinkableSelfNode: true,
-                toLinkableDuplicates: true
-            }, new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("fill", "isHighlighted", function (h) { return h ? "rgba(255,0,0,0.2)" : $(gojs__WEBPACK_IMPORTED_MODULE_1__["Brush"], "Linear", { 0: "rgba(224,234,252,0.5)", 1: "rgba(207,222,243,0.5)" }); }).ofObject()), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Panel"], "Vertical", {
+                toLinkableDuplicates: true,
+                fill: $(gojs__WEBPACK_IMPORTED_MODULE_1__["Brush"], "Linear", { 0: "rgba(224,234,252,0.5)", 1: "rgba(207,222,243,0.5)" })
+            }, 
+            //new go.Binding("fill", "isHighlighted", function(h) { return h ? "rgba(255,0,0,0.2)" : $(go.Brush, "Linear", { 0: "rgba(224,234,252,0.5)", 1: "rgba(207,222,243,0.5)" }); }).ofObject(),
+            new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]('fill', 'color').makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "", function (data) { return data.error ? "red" : data.stroke ? data.stroke : "black"; }), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("strokeWidth", "error", function (t) { return t ? 3 : 1; })), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Panel"], "Vertical", {
                 defaultAlignment: gojs__WEBPACK_IMPORTED_MODULE_1__["Spot"].Center,
                 margin: 6
             }, $(gojs__WEBPACK_IMPORTED_MODULE_1__["Panel"], "Horizontal", {
@@ -1394,7 +1972,7 @@ var ConceptMapComponent = /** @class */ (function () {
                 isMultiline: true,
                 editable: true,
                 alignment: gojs__WEBPACK_IMPORTED_MODULE_1__["Spot"].Center
-            }, new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay())), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Placeholder"], // create a placeholder to represent the area where the contents of the group are
+            }, new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("text", "text").makeTwoWay(), new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("stroke", "textColor").makeTwoWay())), $(gojs__WEBPACK_IMPORTED_MODULE_1__["Placeholder"], // create a placeholder to represent the area where the contents of the group are
             {
                 padding: new gojs__WEBPACK_IMPORTED_MODULE_1__["Margin"](0, 5)
             })), // end Vertical Panel
@@ -1418,8 +1996,7 @@ var ConceptMapComponent = /** @class */ (function () {
             }, $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], {
                 geometryString: "M0 0 L3 0 3 10 6 10 x F1 M6 6 L14 6 14 14 6 14z",
                 fill: "gray"
-            })) // end button
-            ); // end Adornment
+            })), $("Button", new gojs__WEBPACK_IMPORTED_MODULE_1__["Binding"]("opacity", "error", function (t) { return t ? 1 : 0; }), { alignment: gojs__WEBPACK_IMPORTED_MODULE_1__["Spot"].BottomRight, opacity: 0 }, $(gojs__WEBPACK_IMPORTED_MODULE_1__["Shape"], "FivePointedBurst", { width: 8, height: 8 }), { click: checkInconsistence })); // end Adornment
         conceptNodeTemplate.selectionAdornmentTemplate = selectionAdornmentTemplate;
         relationNodeTemplate.selectionAdornmentTemplate = selectionAdornmentTemplate;
         mapTemplate.selectionAdornmentTemplate = selectionAdornmentTemplate;
@@ -1430,51 +2007,11 @@ var ConceptMapComponent = /** @class */ (function () {
         myDiagram.groupTemplateMap.add("map", mapTemplate);
         myDiagram.toolManager.linkingTool.linkValidation = validateLink;
         myDiagram.toolManager.relinkingTool.linkValidation = validateLink;
-        var nodeDataArray = [
-            { key: 0, text: "Concept 1", category: "concept", loc: "-80 -6", group: 4 },
-            { key: 1, text: "Concept 2", category: "concept", loc: "170 -30", group: 4 },
-            { key: 2, text: "Concept 3", category: "concept", loc: "170 10", group: 4 },
-            { key: 3, text: "Relation 1", category: "relation", loc: "30 -6", group: 4 },
-            { key: 4, text: "Concept Map 1", isGroup: true, category: "map", expanded: true },
-            { key: 5, text: "Relation 2", loc: "290 -30", category: "relation", },
-            { key: 6, text: "Concept 4", loc: "400 -30", category: "concept" }
-        ];
-        var linkDataArray = [
-            { from: 0, to: 3, category: "normal", color: "red", group: 4 },
-            { from: 3, to: 1, category: "normal", group: 4 },
-            { from: 3, to: 2, category: "normal", group: 4 },
-            { from: 1, to: 5, category: "normal" },
-            { from: 5, to: 6, category: "normal" }
-        ];
-        if (!!this.versionService.getCurrentLoadVersion()) {
-            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
-                title: 'Are you sure?',
-                text: 'You are loading a new content and you will lost all unseved data of the previous map.',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, load it!',
-                cancelButtonText: 'Don\'t load it',
-                confirmButtonClass: "btn btn-success",
-                cancelButtonClass: "btn btn-danger",
-                buttonsStyling: false
-            }).then(function (result) {
-                if (result.value) {
-                    myDiagram.model = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(_this.versionService.getCurrentLoadVersion().content);
-                    _this.versionService.removeCurrentLoadVersion();
-                }
-                else {
-                    _this.versionService.removeCurrentLoadVersion();
-                    (!!localStorage.getItem('currentModel')) ?
-                        myDiagram.model = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(localStorage.getItem('currentModel')) :
-                        myDiagram.model = new gojs__WEBPACK_IMPORTED_MODULE_1__["GraphLinksModel"](nodeDataArray, linkDataArray);
-                }
-            });
-        }
-        else {
-            (!!localStorage.getItem('currentModel')) ?
-                myDiagram.model = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(localStorage.getItem('currentModel')) :
-                myDiagram.model = new gojs__WEBPACK_IMPORTED_MODULE_1__["GraphLinksModel"](nodeDataArray, linkDataArray);
-        }
+        var currentModel = this.modelService.getCurrentModel();
+        if (!!currentModel)
+            loadModel(currentModel);
+        else
+            resetModel();
     };
     ConceptMapComponent.prototype.ngOnDestroy = function () {
         localStorage.setItem('currentModel', myDiagram.model.toJson());
@@ -1502,29 +2039,46 @@ var ConceptMapComponent = /** @class */ (function () {
             selector: 'conceptmap',
             template: __webpack_require__(/*! ./conceptmap.component.html */ "./src/app/edit/conceptmap/conceptmap.component.html")
         }),
-        __metadata("design:paramtypes", [_services_index_service__WEBPACK_IMPORTED_MODULE_2__["VersionService"], _services_index_service__WEBPACK_IMPORTED_MODULE_2__["ModelService"]])
+        __metadata("design:paramtypes", [_services_index_service__WEBPACK_IMPORTED_MODULE_2__["VersionService"], _services_index_service__WEBPACK_IMPORTED_MODULE_2__["ModelService"], _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_6__["SocketService"]])
     ], ConceptMapComponent);
     return ConceptMapComponent;
 }());
 
+function loadModel(loadedModel) {
+    var model = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(loadedModel);
+    model.makeUniqueKeyFunction = function () { return Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(); };
+    model["makeUniqueLinkKeyFunction"] = function () { return Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(); };
+    model["linkKeyProperty"] = 'key';
+    myDiagram.model = model;
+}
 function resetModel() {
-    var nodeDataArray = [
-        { key: 0, text: "Concept 1", category: "concept", loc: "-80 -6", group: 4 },
-        { key: 1, text: "Concept 2", category: "concept", loc: "170 -30", group: 4 },
-        { key: 2, text: "Concept 3", category: "concept", loc: "170 10", group: 4 },
-        { key: 3, text: "Relation 1", category: "relation", loc: "30 -6", group: 4 },
-        { key: 4, text: "Concept Map 1", isGroup: true, category: "map", expanded: true },
-        { key: 5, text: "Relation 2", loc: "290 -30", category: "relation", },
-        { key: 6, text: "Concept 4", loc: "400 -30", category: "concept" }
-    ];
-    var linkDataArray = [
-        { from: 0, to: 3, category: "normal", color: "red", group: 4 },
-        { from: 3, to: 1, category: "normal", group: 4 },
-        { from: 3, to: 2, category: "normal", group: 4 },
-        { from: 1, to: 5, category: "normal" },
-        { from: 5, to: 6, category: "normal" }
-    ];
-    myDiagram.model = new gojs__WEBPACK_IMPORTED_MODULE_1__["GraphLinksModel"](nodeDataArray, linkDataArray);
+    var model = new gojs__WEBPACK_IMPORTED_MODULE_1__["GraphLinksModel"]([], []);
+    model.makeUniqueKeyFunction = function () { return Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(); };
+    model.makeUniqueLinkKeyFunction = function () { return Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(); };
+    model.linkKeyProperty = 'key';
+    myDiagram.model = model;
+}
+var monitor = function (e) {
+    var message = new _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_5__["SocketMessage"]();
+    message.type = 'sendModel';
+    message.content = myDiagram.model.toJson();
+    socket.send(message);
+    //if(e.isTransactionFinished){
+    //console.log(e);
+    //}
+};
+function initListener() {
+    myDiagram.addModelChangedListener(monitor);
+}
+function stopListener() {
+    myDiagram.removeModelChangedListener(monitor);
+}
+function realTimeUpdateModel(model) {
+    stopListener();
+    var received = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(model);
+    var diff = myDiagram.model["computeJsonDifference"](received);
+    myDiagram.model.applyIncrementalJson(diff);
+    initListener();
 }
 
 
@@ -1534,7 +2088,7 @@ function resetModel() {
 /*!********************************!*\
   !*** ./src/app/global.vars.ts ***!
   \********************************/
-/*! exports provided: authApiUri, userApiUri, mapApiUri, meApiUri, versionApiUri, followApiUri */
+/*! exports provided: authApiUri, userApiUri, mapApiUri, meApiUri, versionApiUri, followApiUri, groupApiUri */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1545,12 +2099,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "meApiUri", function() { return meApiUri; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "versionApiUri", function() { return versionApiUri; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "followApiUri", function() { return followApiUri; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupApiUri", function() { return groupApiUri; });
 var authApiUri = 'http://cmpaas.org/v1/auth';
 var userApiUri = 'http://cmpaas.org/v1/users';
 var mapApiUri = 'http://cmpaas.org/v1/maps';
 var meApiUri = 'http://cmpaas.org/v1/users/me';
 var versionApiUri = 'http://cmpaas.org/v1/versions';
 var followApiUri = 'http://cmpaas.org/v1/follow';
+var groupApiUri = 'http://cmpaas.org/v1/groups';
 
 
 /***/ }),
@@ -1562,7 +2118,7 @@ var followApiUri = 'http://cmpaas.org/v1/follow';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"wrapper\">\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"black\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar-cmp></app-sidebar-cmp>\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\n    </div>\n    <div class=\"main-panel\">\n        <app-navbar-cmp></app-navbar-cmp>\n        <router-outlet></router-outlet>\n        <div *ngIf=\"!isMap()\">\n            <app-footer-cmp></app-footer-cmp>\n        </div>\n    </div>\n    <app-fixedplugin *ngIf=\"isEditor()\"></app-fixedplugin>\n</div>\n"
+module.exports = "\r\n<div class=\"wrapper\">\r\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"black\" data-image=\"./assets/img/sidebar-1.jpg\">\r\n        <app-sidebar-cmp></app-sidebar-cmp>\r\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\r\n    </div>\r\n    <div class=\"main-panel\">\r\n        <app-navbar-cmp></app-navbar-cmp>\r\n        <router-outlet></router-outlet>\r\n        <div *ngIf=\"!isMap()\">\r\n            <app-footer-cmp></app-footer-cmp>\r\n        </div>\r\n    </div>\r\n    <app-fixedplugin *ngIf=\"isEditor()\"></app-fixedplugin>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1700,7 +2256,8 @@ var AdminLayoutComponent = /** @class */ (function () {
         }
     };
     AdminLayoutComponent.prototype.isEditor = function () {
-        if (this.location.prepareExternalUrl(this.location.path()) === '/edit/cmap') {
+        if (this.location.prepareExternalUrl(this.location.path()) === '/edit/cmap' ||
+            this.location.prepareExternalUrl(this.location.path()).startsWith('/edit/cmap?')) {
             return true;
         }
         else {
@@ -1752,7 +2309,7 @@ var AdminLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\n  <div class=\"container\">\n    <div class=\"navbar-wrapper\">\n      <a class=\"navbar-brand d-none d-sm-none d-md-block\" [routerLink]=\"['/dashboard']\">Knowledge Portal | CMPaaS Project</a>\n      <a class=\"navbar-brand d-block d-sm-block d-md-none\" [routerLink]=\"['/dashboard']\">MD Pro Angular</a>\n    </div>\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">\n            <i class=\"material-icons\">dashboard</i> Dashboard\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\n          <a class=\"nav-link\" [routerLink]=\"['/pages/register']\">\n            <i class=\"material-icons\">person_add</i> Register\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\n          <a class=\"nav-link\" [routerLink]=\"['/pages/login']\">\n            <i class=\"material-icons\">fingerprint</i> Login\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.isLocked()\">\n          <a class=\"nav-link\" [routerLink]=\"['/pages/lock']\">\n            <i class=\"material-icons\">lock_open</i> Lock\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n  <router-outlet></router-outlet>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-wrapper\">\r\n      <a class=\"navbar-brand d-none d-sm-none d-md-block\" [routerLink]=\"['/dashboard']\">Knowledge Portal | CMPaaS Project</a>\r\n      <a class=\"navbar-brand d-block d-sm-block d-md-none\" [routerLink]=\"['/dashboard']\">MD Pro Angular</a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\">\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">\r\n            <i class=\"material-icons\">dashboard</i> Dashboard\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/pages/register']\">\r\n            <i class=\"material-icons\">person_add</i> Register\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"!this.isLocked()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/pages/login']\">\r\n            <i class=\"material-icons\">fingerprint</i> Login\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.isLocked()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/pages/lock']\">\r\n            <i class=\"material-icons\">lock_open</i> Lock\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n  <router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -1881,7 +2438,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"header\">\n    <h4 class=\"title\">{{ title }}</h4>\n    <p class=\"category\">{{ subtitle }}</p>\n  </div>\n  <div class=\"content\">\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\n\n    <div class=\"footer\">\n      <div class=\"legend\">\n        <span *ngFor=\"let item of legendItems\">\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\n        </span>\n      </div>\n      <hr *ngIf=\"withHr\">\n      <div class=\"stats\">\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"header\">\r\n    <h4 class=\"title\">{{ title }}</h4>\r\n    <p class=\"category\">{{ subtitle }}</p>\r\n  </div>\r\n  <div class=\"content\">\r\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\r\n\r\n    <div class=\"footer\">\r\n      <div class=\"legend\">\r\n        <span *ngFor=\"let item of legendItems\">\r\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\r\n        </span>\r\n      </div>\r\n      <hr *ngIf=\"withHr\">\r\n      <div class=\"stats\">\r\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2004,7 +2561,7 @@ var MdChartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"content table-responsive\">\n    <table class=\"table\">\n      <tbody>\n          <tr *ngFor=\"let row of data.dataRows\">\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\n            <td>\n                <div class=\"flag\">\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\n                </div>\n            </td>\n            <td>\n                {{row[1]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[2]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[3]}}\n            </td>\n          </tr>\n      </tbody>\n    </table>\n\n  </div>\n"
+module.exports = "\r\n  <div class=\"content table-responsive\">\r\n    <table class=\"table\">\r\n      <tbody>\r\n          <tr *ngFor=\"let row of data.dataRows\">\r\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\r\n            <td>\r\n                <div class=\"flag\">\r\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\r\n                </div>\r\n            </td>\r\n            <td>\r\n                {{row[1]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[2]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[3]}}\r\n            </td>\r\n          </tr>\r\n      </tbody>\r\n    </table>\r\n\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -2122,6 +2679,23 @@ var MdModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/secrets.vars.ts":
+/*!*********************************!*\
+  !*** ./src/app/secrets.vars.ts ***!
+  \*********************************/
+/*! exports provided: googleApiKey, googleClientId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "googleApiKey", function() { return googleApiKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "googleClientId", function() { return googleClientId; });
+var googleApiKey = 'AIzaSyDUUw55UjzKPQPogEaH8AAwa8Hfo3eYWLY';
+var googleClientId = '305079514663-ddrsd311mqdghdhkcq4uu8be4i013e41.apps.googleusercontent.com';
+
+
+/***/ }),
+
 /***/ "./src/app/shared/fixedplugin/fixedplugin.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/shared/fixedplugin/fixedplugin.component.css ***!
@@ -2129,7 +2703,7 @@ var MdModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".f-left {\n    float: left;\n}\n\n.f-44 {\n    font-size: 44px;\n    color: #000\n}"
+module.exports = ".f-left {\r\n    float: left;\r\n}\r\n\r\n.f-44 {\r\n    font-size: 44px;\r\n    color: #000\r\n}\r\n\r\n.active {\r\n    border: 4px solid;\r\n    border-color: #f44336 !important;\r\n}\r\n\r\n.active .material-icons {\r\n    line-height: 21px;\r\n    background-color: #2CA8FF;\r\n}\r\n\r\n.no-line {\r\n    border-bottom: 0px !important;\r\n}\r\n\r\n.color-picker {\r\n    height: 75px !important;\r\n}\r\n\r\n.more-info {\r\n    height: 145px !important;\r\n}\r\n\r\n.realtime {\r\n    height: 120px !important;\r\n}\r\n\r\n.realtime-link{\r\n    font-weight: normal;\r\n    font-size: .8125rem !important;\r\n}\r\n\r\n/* \r\n.revert {\r\n    -webkit-transform: rotate(180deg);\r\n    -moz-transform: rotate(180deg);\r\n    -o-transform: rotate(180deg);\r\n    -ms-transform: rotate(180deg);\r\n    transform: rotate(180deg)\r\n} */"
 
 /***/ }),
 
@@ -2140,7 +2714,7 @@ module.exports = ".f-left {\n    float: left;\n}\n\n.f-44 {\n    font-size: 44px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\n<div class=\"fixed-plugin\">\n    <div class=\"dropdown show-dropdown\">\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n            <i class=\"fa fa-cog fa-2x\"> </i>\n        </a>\n        <ul class=\"dropdown-menu\">\n            <li class=\"header-title\"> Sidebar Filters</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                  <div class=\"ml-auto mr-auto\">\n                    <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                    <span class=\"badge filter badge-azure active\" data-color=\"azure\"></span>\n                    <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                    <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                    <span class=\"badge filter badge-danger\" data-color=\"danger\"></span>\n                    <span class=\"badge filter badge-rose\" data-color=\"rose\"></span>\n                  </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"header-title\">Sidebar Background</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger background-color\">\n                    <div class=\"ml-auto mr-auto\">\n                        <span class=\"badge filter badge-white\" data-color=\"white\"></span>\n                        <span class=\"badge filter badge-black\" data-color=\"black\"></span>\n                        <span class=\"badge filter badge-danger active\" data-color=\"red\"></span>\n                    </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"header-title\">Operations</li>\n            <li class=\"adjustments-line\">\n                    <button mat-raised-button mat-min-fab class=\"btn btn-danger btn-round btn-fab btn-sm\" title=\"Create a new map\" id=\"bt-new-map\">\n                        <i class=\"material-icons\">add</i>\n                    </button>\n                    <button mat-raised-button mat-min-fab class=\"btn btn-success btn-round btn-fab btn-sm\" title=\"Save as new map\" id=\"bt-save\">\n                        <i class=\"material-icons\">save</i>\n                    </button>\n                    <button mat-raised-button mat-min-fab class=\"btn btn-warning btn-round btn-fab btn-sm\" title=\"Save as new version\" id=\"bt-version\" [disabled]=\"!mapService.getCurrentMap()\">\n                        <i class=\"material-icons\">call_split</i>\n                    </button>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Mini</p>\n                  <label class=\"ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-mini\">\n                      <label>\n                          <input type=\"checkbox\">\n                              <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Images</p>\n                  <label class=\"switch-mini ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-image\">\n                      <label>\n                          <input type=\"checkbox\" checked=\"\">\n                            <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"header-title\">Images</li>\n            <li class=\"active\">\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\n                </a>\n            </li>\n            \n        </ul>\n    </div>\n</div>\n"
+module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\r\n<div class=\"fixed-plugin\">\r\n    <div class=\"dropdown show-dropdown\">\r\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\" id=\"bt-fixed-plugin\">\r\n            <i class=\"fa fa-cog fa-2x\"> </i>\r\n        </a>\r\n        <ul class=\"dropdown-menu\">\r\n            <li class=\"header-title\">Operations</li>\r\n            <li class=\"adjustments-line\">\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-danger btn-round btn-fab btn-sm\" title=\"Clear all and create a new map\" id=\"bt-new-map\">\r\n                    <i class=\"material-icons\">clear</i>\r\n                </button>\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-success btn-round btn-fab btn-sm\" title=\"Save as new map\" id=\"bt-save\">\r\n                    <i class=\"material-icons\">save</i>\r\n                </button>\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-warning btn-round btn-fab btn-sm\" title=\"Create a new version of this map\" id=\"bt-version\" [disabled]=\"!mapService.getCurrentMap()\">\r\n                    <i class=\"material-icons\">call_split</i>\r\n                    <!-- <i class=\"material-icons\">device_hub</i> -->\r\n                </button>\r\n            </li>\r\n            <li class=\"header-title\">Advanced Operations</li>\r\n            <li class=\"adjustments-line\">\r\n                <!-- <button mat-raised-button mat-min-fab class=\"btn btn-info btn-round btn-fab btn-sm\" title=\"Check map inconsistencies\" id=\"bt-realtime\">\r\n                    <i onclick=\"javascript:void(0)\" class=\"material-icons\">sync</i>\r\n                </button> -->\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-info btn-round btn-fab btn-sm\" title=\"Check map inconsistencies\" id=\"bt-check-map\">\r\n                    <i onclick=\"javascript:void(0)\" class=\"material-icons\">spellcheck</i>\r\n                </button>\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-primary btn-round btn-fab btn-sm\" title=\"Speech2Map\" id=\"bt-speech2map-map\">\r\n                    <i onclick=\"javascript:void(0)\" class=\"material-icons\">mic</i>\r\n                </button>\r\n            </li>\r\n            <li class=\"header-title\">Colors</li>\r\n            <li class=\"adjustments-line no-line\">\r\n                <button type=\"button\" mat-raised-button mat-min-fab class=\"btn btn-default btn-round btn-fab btn-sm color-change\" title=\"Font color\" id=\"bt-font\">\r\n                    <i class=\"material-icons\">format_color_text</i>\r\n                </button>\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-default btn-round btn-fab btn-sm color-change\" title=\"Border/Line color\" id=\"bt-stroke\">\r\n                    <i class=\"material-icons\">border_color</i>\r\n                </button>\r\n                <button mat-raised-button mat-min-fab class=\"btn btn-default btn-round btn-fab btn-sm color-change\" title=\"Background-Color\" id=\"bt-background\">\r\n                    <i class=\"material-icons\">format_color_fill</i>\r\n                </button>\r\n            </li>\r\n            <li class=\"adjustments-line color-picker\">\r\n                <a href=\"javascript:void(0)\" class=\"switch-trigger\" id=\"a-color-picker\">\r\n                  <div class=\"ml-auto mr-auto\">\r\n                    <span class=\"badge filter badge-rose\" data-color=\"#e91e63\"></span>\r\n                    <span class=\"badge filter badge-danger\" data-color=\"#f44336\"></span>\r\n                    <span class=\"badge filter badge-orange\" data-color=\"#ff9800\"></span>\r\n                    <span class=\"badge filter badge-purple\" data-color=\"#9c27b0\"></span>\r\n                    <span class=\"badge filter badge-green\" data-color=\"#4caf50\"></span>\r\n                    <span class=\"badge filter badge-azure\" data-color=\"#00bcd4\"></span> <!--add active class to set active badger-->\r\n                    <span class=\"badge filter badge-white\" data-color=\"white\"></span>\r\n                    <span class=\"badge filter badge-grey\" data-color=\"#bcbcbc\"></span>\r\n                    <span class=\"badge filter badge-black\" data-color=\"black\"></span>\r\n                    <span class=\"badge filter badge-rose2\" data-color=\"#E285A1\" data-color2=\"#e91e63\"></span>\r\n                    <span class=\"badge filter badge-danger2\" data-color=\"#F2938C\" data-color2=\"#f44336\"></span>\r\n                    <span class=\"badge filter badge-orange2\" data-color=\"#FFD08E\" data-color2=\"#ff9800\"></span>\r\n                    <span class=\"badge filter badge-purple2\" data-color=\"#A87CAF\" data-color2=\"#9c27b0\"></span>\r\n                    <span class=\"badge filter badge-green2\" data-color=\"#B0F4BB\" data-color2=\"#4caf50\"></span>\r\n                    <span class=\"badge filter badge-azure2\" data-color=\"#93F2FF\" data-color2=\"#00bcd4\"></span> <!--add active class to set active badger-->\r\n                    <span class=\"badge filter badge-white2\" data-color=\"#FCFCFC\" data-color2=\"#C8C8C8\"></span>\r\n                    <span class=\"badge filter badge-grey2\" data-color=\"#E5E5E5\" data-color2=\"#bcbcbc\"></span>\r\n                    <span class=\"badge filter badge-black2\" data-color=\"#727272\" data-color2=\"#000\"></span>\r\n                  </div>\r\n                    <div class=\"clearfix\"></div>\r\n                </a>\r\n            </li>\r\n            <li class=\"header-title\">More Info...</li>\r\n            <li class=\"adjustments-line more-info\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-12\">\r\n                        <textarea class=\"form-control\" placeholder=\"Attach information about this element...\" rows=\"4\" id=\"info-textarea\"></textarea>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-12\">\r\n                        <button mat-raised-button mat-min-fab class=\"btn btn-success btn-round btn-fab btn-sm\" title=\"Save this info...\" id=\"bt-save-info\">\r\n                            <i class=\"material-icons\">done</i>\r\n                        </button>\r\n                        <button mat-raised-button mat-min-fab class=\"btn btn-danger btn-round btn-fab btn-sm\" title=\"Discard this info...\" id=\"bt-discard-info\">\r\n                            <i class=\"material-icons\">delete_forever</i>\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </li>\r\n            <li class=\"header-title\">Realtime edition</li>\r\n            <li class=\"adjustments-line realtime\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Activate realtime</p>\r\n                  <label class=\"ml-auto\">\r\n                    <div class=\"togglebutton switch-realtime\">\r\n                      <label>\r\n                          <input type=\"checkbox\">\r\n                              <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-9\">\r\n                        <p *ngIf=\"isEnabled\" class=\"realtime-link\" id=\"realtime-link\"></p>\r\n                    </div>\r\n                    <div class=\"col-md-3\">\r\n                        <button *ngIf=\"isEnabled\" type=\"button\" mat-raised-button mat-min-fab class=\"btn btn-primary btn-round btn-fab btn-sm\" title=\"Copy shareable link\" (click)=\"copyLink()\">\r\n                            <i class=\"material-icons\">file_copy</i>\r\n                        </button>\r\n                    </div>                   \r\n                </div>  \r\n            \r\n            </li>\r\n            <!-- <li class=\"adjustments-line\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Sidebar Images</p>\r\n                  <label class=\"switch-mini ml-auto\">\r\n                    <div class=\"togglebutton switch-sidebar-image\">\r\n                      <label>\r\n                          <input type=\"checkbox\" checked=\"\">\r\n                            <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n            </li>\r\n            <li class=\"header-title\">Images</li>\r\n            <li class=\"active\">\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\r\n                </a>\r\n            </li> -->\r\n            \r\n        </ul>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2160,6 +2734,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../edit/conceptmap/conceptmap.component */ "./src/app/edit/conceptmap/conceptmap.component.ts");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var gojs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gojs */ "./node_modules/gojs/release/go.js");
+/* harmony import */ var gojs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(gojs__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _speech2map_speech_recognition_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../speech2map/speech-recognition.component */ "./src/app/speech2map/speech-recognition.component.ts");
+/* harmony import */ var _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../_services/socketservice/socket.service */ "./src/app/_services/socketservice/socket.service.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var ngx_clipboard__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-clipboard */ "./node_modules/ngx-clipboard/fesm5/ngx-clipboard.js");
+/* harmony import */ var _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../_models/socketMessage.model */ "./src/app/_models/socketMessage.model.ts");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2174,6 +2767,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
+
+
+var $$ = gojs__WEBPACK_IMPORTED_MODULE_5__["GraphObject"].make; // for conciseness in defining templates
 var md = {
     misc: {
         navbar_menu_visible: 0,
@@ -2182,11 +2784,77 @@ var md = {
     }
 };
 var FixedpluginComponent = /** @class */ (function () {
-    function FixedpluginComponent(router, mapService, authService) {
+    function FixedpluginComponent(router, mapService, authService, dialog, socket, clipboardService, activateRoute) {
         this.router = router;
         this.mapService = mapService;
         this.authService = authService;
+        this.dialog = dialog;
+        this.socket = socket;
+        this.clipboardService = clipboardService;
+        this.activateRoute = activateRoute;
+        this.isEnabled = false;
     }
+    FixedpluginComponent.prototype.initRealtime = function () {
+        var _this = this;
+        this.socket.connect();
+        var message = new _models_socketMessage_model__WEBPACK_IMPORTED_MODULE_12__["SocketMessage"]();
+        message.type = 'join';
+        message.username = JSON.parse(this.authService.getCurrentUser()).username;
+        setTimeout(function () {
+            message.content = _this.activateRoute.snapshot.queryParams.roomId;
+            _this.socket.send(message);
+        }, 0);
+        this.socket.messages.subscribe(function (msg) {
+            if (msg.type == 'newMessage')
+                $.notify({
+                    icon: 'notifications',
+                    message: "<b>" + msg.content.from + ": </b>" + msg.content.text + "."
+                }, {
+                    type: 'success',
+                    timer: 2000,
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    },
+                    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} alert-with-icon" role="alert">' +
+                        '<button mat-raised-button type="button" aria-hidden="true" class="close" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
+                        '<i class="material-icons" data-notify="icon">notifications</i> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                        '</div>'
+                });
+            else if (msg.type == 'updateModel')
+                Object(_edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["realTimeUpdateModel"])(msg.content);
+        });
+    };
+    FixedpluginComponent.prototype.disconnectRealTime = function () {
+        this.socket.disconnect();
+    };
+    FixedpluginComponent.prototype.startRealtime = function (id) {
+        $('.switch-realtime input').attr('checked', true);
+        this.initRealtime();
+        this.router.navigate(['edit', 'cmap'], { queryParams: { roomId: id } });
+        this.isEnabled = true;
+        setTimeout(function () {
+            $('#realtime-link').text(window.location.href);
+        }, 0);
+        Object(_edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["initListener"])();
+    };
+    FixedpluginComponent.prototype.stopRealtime = function () {
+        this.disconnectRealTime();
+        this.router.navigate(['edit', 'cmap'], { queryParams: { roomId: null } });
+        this.isEnabled = false;
+        Object(_edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["stopListener"])();
+    };
+    FixedpluginComponent.prototype.checkRealtimeUrl = function () {
+        if (window.location.href.indexOf('roomId') > 0) {
+            this.startRealtime(this.activateRoute.snapshot.queryParams.roomId);
+        }
+    };
     FixedpluginComponent.prototype.ngOnInit = function () {
         var _this = this;
         // fixed plugin
@@ -2203,6 +2871,132 @@ var FixedpluginComponent = /** @class */ (function () {
                 $('.fixed-plugin .dropdown').addClass('open');
             }
         }
+        $('#bt-fixed-plugin').click(function () {
+            if (!$('.fixed-plugin .show-dropdown').hasClass('show')) {
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                    var moreInfo = node.data.moreInfo;
+                    if (moreInfo)
+                        $("#info-textarea").val(moreInfo);
+                    else
+                        $("#info-textarea").val('');
+                });
+            }
+        });
+        $('#bt-font').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $('#a-color-picker').removeClass('text-color');
+            }
+            else {
+                $(this).addClass('active');
+                $('#a-color-picker').addClass('text-color');
+            }
+        });
+        $('#bt-stroke').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $('#a-color-picker').removeClass('stroke-color');
+            }
+            else {
+                $(this).addClass('active');
+                $('#a-color-picker').addClass('stroke-color');
+            }
+        });
+        $('#bt-background').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $('#a-color-picker').removeClass('background-color');
+            }
+            else {
+                $(this).addClass('active');
+                $('#a-color-picker').addClass('background-color');
+            }
+        });
+        $('#a-color-picker span').click(function () {
+            var color = $(this).data('color');
+            var color2 = $(this).data('color2');
+            if ($('#a-color-picker').hasClass('text-color')) {
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("change text color");
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                    if (node instanceof gojs__WEBPACK_IMPORTED_MODULE_5__["Node"]) {
+                        // Examine and modify the data, not the Node directly.
+                        var data = node.data;
+                        // Call setDataProperty to support undo/redo as well as
+                        // automatically evaluating any relevant bindings.
+                        if (color2) {
+                            var gradient = $$(gojs__WEBPACK_IMPORTED_MODULE_5__["Brush"], "Linear", { 0.0: color, 1.0: color2 });
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "textColor", gradient);
+                        }
+                        else {
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "textColor", color);
+                        }
+                    }
+                    else if (node instanceof gojs__WEBPACK_IMPORTED_MODULE_5__["Link"]) {
+                        var data = node.data;
+                        // Call setDataProperty to support undo/redo as well as
+                        // automatically evaluating any relevant bindings.
+                        if (color2) {
+                            var gradient = $$(gojs__WEBPACK_IMPORTED_MODULE_5__["Brush"], "Linear", { 0.0: color, 1.0: color2 });
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", gradient);
+                        }
+                        else {
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", color);
+                        }
+                    }
+                });
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("change text color");
+            }
+            if ($('#a-color-picker').hasClass('background-color')) {
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("change color");
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                    if (node instanceof gojs__WEBPACK_IMPORTED_MODULE_5__["Node"]) {
+                        // Examine and modify the data, not the Node directly.
+                        var data = node.data;
+                        // Call setDataProperty to support undo/redo as well as
+                        // automatically evaluating any relevant bindings.
+                        if (color2) {
+                            var gradient = $$(gojs__WEBPACK_IMPORTED_MODULE_5__["Brush"], "Linear", { 0.0: color, 1.0: color2 });
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", gradient);
+                        }
+                        else {
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", color);
+                        }
+                    }
+                });
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("change text color");
+            }
+            if ($('#a-color-picker').hasClass('stroke-color')) {
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("change stroke color");
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                    if (node instanceof gojs__WEBPACK_IMPORTED_MODULE_5__["Node"]) {
+                        // Examine and modify the data, not the Node directly.
+                        var data = node.data;
+                        // Call setDataProperty to support undo/redo as well as
+                        // automatically evaluating any relevant bindings.
+                        if (color2) {
+                            var gradient = $$(gojs__WEBPACK_IMPORTED_MODULE_5__["Brush"], "Linear", { 0.0: color, 1.0: color2 });
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "stroke", gradient);
+                        }
+                        else {
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "stroke", color);
+                        }
+                    }
+                    else if (node instanceof gojs__WEBPACK_IMPORTED_MODULE_5__["Link"]) {
+                        var data = node.data;
+                        // Call setDataProperty to support undo/redo as well as
+                        // automatically evaluating any relevant bindings.
+                        if (color2) {
+                            var gradient = $$(gojs__WEBPACK_IMPORTED_MODULE_5__["Brush"], "Linear", { 0.0: color, 1.0: color2 });
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", gradient);
+                        }
+                        else {
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "color", color);
+                        }
+                    }
+                });
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("change stroke color");
+            }
+        });
         $('#bt-new-map').click(function (event) {
             event.preventDefault();
             sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -2226,6 +3020,27 @@ var FixedpluginComponent = /** @class */ (function () {
             event.preventDefault();
             _this.router.navigate(["edit", "cmap", "save"]);
         });
+        $('#bt-save-info').click(function (event) {
+            event.preventDefault();
+            var moreInfo = $('#info-textarea').val();
+            if (moreInfo) {
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("adding moreInfo to element");
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                    var data = node.data;
+                    _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "moreInfo", moreInfo);
+                });
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("adding moreInfo to element");
+            }
+        });
+        $('#bt-discard-info').click(function (event) {
+            event.preventDefault();
+            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("remove moreInfo to element");
+            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].selection.each(function (node) {
+                var data = node.data;
+                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(data, "moreInfo", "");
+            });
+            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("remove moreInfo to element");
+        });
         $('#bt-version').click(function (event) {
             event.preventDefault();
             _this.mapService.createVersion(_edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.toJson())
@@ -2246,6 +3061,102 @@ var FixedpluginComponent = /** @class */ (function () {
                 console.log(error);
             });
         });
+        //   $('#bt-realtime').click((event) => {
+        //     event.preventDefault();
+        //     this.sendMessage();
+        //   });
+        $('#bt-check-map').click(function (event) {
+            event.preventDefault();
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            }
+            else if (window.event) {
+                window.event.cancelBubble = true;
+            }
+            var mapa = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.nodeDataArray;
+            var conceitos = mapa.filter(function (item) { return 'concept' === item.category; });
+            var frasesDeLigacao = mapa.filter(function (item) { return 'relation' === item.category; });
+            var proposicoes = [];
+            var frasesDeLigacaoComConexoes = [];
+            var links = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model;
+            var conexoes = links.linkDataArray;
+            conceitos.forEach(function (item) {
+                var conceitoOrigem = item;
+                conexoes.forEach(function (item) {
+                    if (item.from === conceitoOrigem.key) {
+                        var ligacao_1 = frasesDeLigacao.find(function (element) { return element.key === item.to; });
+                        conexoes.forEach(function (item) {
+                            if (ligacao_1.key === item.from) {
+                                var conceitoDestino = conceitos.find(function (element) { return element.key === item.to; });
+                                var temp = __assign({}, ligacao_1, { from: conceitoOrigem.key, to: conceitoDestino.key });
+                                frasesDeLigacaoComConexoes.push(temp);
+                                proposicoes.push(conceitoOrigem.text + " " + ligacao_1.text + " " + conceitoDestino.text);
+                            }
+                        });
+                    }
+                });
+            });
+            var mapaConceitual = {
+                conceitos: conceitos,
+                frasesDeLigacao: frasesDeLigacaoComConexoes,
+                proposicoes: proposicoes,
+                erros: {
+                    conceitoNaoDefinido: [],
+                    fraseDeLigacaoNaoDefinida: [],
+                    fraseDeLigacaoSemVerbo: [],
+                    proposicoesComErroDeConcordancia: [],
+                    conceitoRepetido: [],
+                    conceitoInvalido: []
+                }
+            };
+            var params = new URLSearchParams();
+            params.append('mapa', JSON.stringify(mapaConceitual));
+            var API = 'http://cmpaas.inf.ufes.br:5002/';
+            $('#bt-check-map i').html('autorenew');
+            axios__WEBPACK_IMPORTED_MODULE_6___default.a.post(API + "mapa/erros", params)
+                .then(function (result) {
+                var erros = result.data.mapaEnviado.erros;
+                Object.keys(erros).forEach(function (erro) {
+                    _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].startTransaction("add error");
+                    erros[erro].forEach(function (item) {
+                        if (Array.isArray(item)) {
+                            if ('proposicoesComErroDeConcordancia' === erro) {
+                                var node = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.findNodeDataForKey(item[0].key);
+                                var fix = item[1];
+                                node.category === 'relation' ? _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.textColor) : _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.stroke);
+                                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "error", erro);
+                                _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, 'fix', fix);
+                            }
+                            else {
+                                item.forEach(function (item) {
+                                    var node = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.findNodeDataForKey(item.key);
+                                    node.category === 'relation' ? _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.textColor) : _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.stroke);
+                                    _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "error", erro);
+                                });
+                            }
+                        }
+                        else {
+                            var node = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.findNodeDataForKey(item.key);
+                            node.category === 'relation' ? _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.textColor) : _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "prevColor", node.stroke);
+                            _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].model.setDataProperty(node, "error", erro);
+                        }
+                    });
+                    _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_3__["myDiagram"].commitTransaction("add error");
+                });
+            })
+                .catch(function (error) { return console.log({ error: error }); })
+                .then(function () {
+                $('#bt-check-map i').html('spellcheck');
+            });
+        });
+        $('#bt-speech2map-map').click(function (event) {
+            event.preventDefault();
+            var dialogConfig = new _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialogConfig"]();
+            dialogConfig.disableClose = true;
+            dialogConfig.autoFocus = true;
+            dialogConfig.width = '1000px';
+            var dialogRef = _this.dialog.open(_speech2map_speech_recognition_component__WEBPACK_IMPORTED_MODULE_8__["SpeechRecognitionComponent"], dialogConfig);
+        });
         $('.fixed-plugin a').click(function (event) {
             // Alex: if we click on switch, stop propagation of the event,
             // so the dropdown will not be hide, otherwise we set the  section active
@@ -2258,29 +3169,52 @@ var FixedpluginComponent = /** @class */ (function () {
                 }
             }
         });
-        $('.fixed-plugin .active-color span').click(function () {
-            var $full_page_background = $('.full-page-background');
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-            var new_color = $(this).data('color');
-            if ($sidebar.length !== 0) {
-                $sidebar.attr('data-color', new_color);
-            }
-            if ($full_page.length !== 0) {
-                $full_page.attr('filter-color', new_color);
-            }
-            if ($sidebar_responsive.length !== 0) {
-                $sidebar_responsive.attr('data-color', new_color);
+        $('.fixed-plugin button').click(function (event) {
+            // Alex: if we click on switch, stop propagation of the event,
+            // so the dropdown will not be hide, otherwise we set the  section active
+            if ($(this).hasClass('color-change')) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+                else if (window.event) {
+                    window.event.cancelBubble = true;
+                }
             }
         });
-        $('.fixed-plugin .background-color span').click(function () {
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-            var new_color = $(this).data('color');
-            if ($sidebar.length !== 0) {
-                $sidebar.attr('data-background-color', new_color);
-            }
+        $('.fixed-plugin .stroke-color span').click(function () {
+            var color = $(this).data('color');
+            //   $(this).siblings().removeClass('active');
+            //   $(this).addClass('active');
+            //   const new_color = $(this).data('color');
+            //   if ($sidebar.length !== 0) {
+            //       $sidebar.attr('data-background-color', new_color);
+            //   }
         });
+        //   $('.fixed-plugin .text-color span').click(function() {
+        //     const color = $(this).data('color');
+        //     //   $(this).siblings().removeClass('active');
+        //     //   $(this).addClass('active');
+        //     //   const new_color = $(this).data('color');
+        //     //   if ($sidebar.length !== 0) {
+        //     //       $sidebar.attr('data-background-color', new_color);
+        //     //   }
+        //     myDiagram.startTransaction("change text color");
+        //     myDiagram.selection.each(function(node) {
+        //         if (node instanceof go.Node) {  // ignore any selected Links and simple Parts
+        //             // Examine and modify the data, not the Node directly.
+        //             var data = node.data;
+        //             // Call setDataProperty to support undo/redo as well as
+        //             // automatically evaluating any relevant bindings.
+        //             myDiagram.model.setDataProperty(data, "textColor", color);
+        //         }else if(node instanceof go.Link) {
+        //             var data = node.data;
+        //             // Call setDataProperty to support undo/redo as well as
+        //             // automatically evaluating any relevant bindings.
+        //             myDiagram.model.setDataProperty(data, "color", color);
+        //         }
+        //     });
+        //     myDiagram.commitTransaction("change color");
+        //   });
         $('.fixed-plugin .img-holder').click(function () {
             var $full_page_background = $('.full-page-background');
             $(this).parent('li').siblings().removeClass('active');
@@ -2335,29 +3269,18 @@ var FixedpluginComponent = /** @class */ (function () {
                 var background_image = false;
             }
         });
-        $('.switch-sidebar-mini input').change(function () {
-            var $body = $('body');
-            var $input = $(this);
-            if (md.misc.sidebar_mini_active === true) {
-                $('body').removeClass('sidebar-mini');
-                md.misc.sidebar_mini_active = false;
+        $('.switch-realtime input').change(function () {
+            if ($('.switch-realtime input')[0].checked) {
+                _this.startRealtime(Object(uuid__WEBPACK_IMPORTED_MODULE_10__["v4"])());
             }
             else {
-                setTimeout(function () {
-                    $('body').addClass('sidebar-mini');
-                    $('.sidebar .collapse').css('height', 'auto');
-                    md.misc.sidebar_mini_active = true;
-                }, 300);
+                _this.stopRealtime();
             }
-            // we simulate the window Resize so the charts will get updated in realtime.
-            var simulateWindowResize = setInterval(function () {
-                window.dispatchEvent(new Event('resize'));
-            }, 180);
-            // we stop the simulation of Window Resize after the animations are completed
-            setTimeout(function () {
-                clearInterval(simulateWindowResize);
-            }, 1000);
         });
+        this.checkRealtimeUrl();
+    };
+    FixedpluginComponent.prototype.copyLink = function () {
+        this.clipboardService.copyFromContent(window.location.href);
     };
     FixedpluginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2365,7 +3288,13 @@ var FixedpluginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./fixedplugin.component.html */ "./src/app/shared/fixedplugin/fixedplugin.component.html"),
             styles: [__webpack_require__(/*! ./fixedplugin.component.css */ "./src/app/shared/fixedplugin/fixedplugin.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_index_service__WEBPACK_IMPORTED_MODULE_2__["MapService"], _services_index_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _services_index_service__WEBPACK_IMPORTED_MODULE_2__["MapService"],
+            _services_index_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"],
+            _services_socketservice_socket_service__WEBPACK_IMPORTED_MODULE_9__["SocketService"],
+            ngx_clipboard__WEBPACK_IMPORTED_MODULE_11__["ClipboardService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
     ], FixedpluginComponent);
     return FixedpluginComponent;
 }());
@@ -2387,6 +3316,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _fixedplugin_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fixedplugin.component */ "./src/app/shared/fixedplugin/fixedplugin.component.ts");
+/* harmony import */ var ngx_clipboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-clipboard */ "./node_modules/ngx-clipboard/fesm5/ngx-clipboard.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2396,13 +3326,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var FixedpluginModule = /** @class */ (function () {
     function FixedpluginModule() {
     }
     FixedpluginModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                ngx_clipboard__WEBPACK_IMPORTED_MODULE_3__["ClipboardModule"]
             ],
             declarations: [_fixedplugin_component__WEBPACK_IMPORTED_MODULE_2__["FixedpluginComponent"]],
             exports: [_fixedplugin_component__WEBPACK_IMPORTED_MODULE_2__["FixedpluginComponent"]]
@@ -2422,7 +3354,7 @@ var FixedpluginModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"footer \">\n  <div class=\"container\">\n    <nav class=\"pull-left\">\n      <ul>\n        <li>\n          <a href=\"https://www.creative-tim.com\">\n            Creative Tim\n          </a>\n        </li>\n        <li>\n          <a href=\"https://creative-tim.com/about-us\">\n            About Us\n          </a>\n        </li>\n        <li>\n          <a href=\"http://blog.creative-tim.com\">\n            Blog\n          </a>\n        </li>\n        <li>\n          <a href=\"https://www.creative-tim.com/license\">\n            Licenses\n          </a>\n        </li>\n      </ul>\n    </nav>\n    <div class=\"copyright pull-right\">\n      &copy;\n      {{test | date: 'yyyy'}}, made by\n      <a href=\"https://www.ppgi.inf.ufes.br\" target=\"_blank\"> UFES | PPGI | LIED | </a> CMPaaS Project.\n    </div>\n  </div>\n</footer>\n"
+module.exports = "<footer class=\"footer \">\r\n  <div class=\"container\">\r\n    <nav class=\"pull-left\">\r\n      <!-- <ul>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com\">\r\n            Creative Tim\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://creative-tim.com/about-us\">\r\n            About Us\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"http://blog.creative-tim.com\">\r\n            Blog\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com/license\">\r\n            Licenses\r\n          </a>\r\n        </li>\r\n      </ul> -->\r\n    </nav>\r\n    <div class=\"copyright pull-right\">\r\n      &copy;\r\n      {{test | date: 'yyyy'}}, made by\r\n      <a href=\"https://www.ppgi.inf.ufes.br\" target=\"_blank\"> UFES | PPGI | LIED | </a> CMPaaS Project.\r\n    </div>\r\n  </div>\r\n</footer>\r\n"
 
 /***/ }),
 
@@ -2509,7 +3441,7 @@ var FooterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-wrapper\">\n      <div class=\"navbar-minimize\">\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\n        </button>\n      </div>\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\n    </div>\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n      <form class=\"navbar-form\">\n        <div class=\"input-group no-border\">\n          <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control\" placeholder=\"Search User...\" [ngModelOptions]=\"{standalone: true}\">\n          <button mat-raised-button (click)=\"redirectToSearch($event)\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i>\n            <div class=\"ripple-container\"></div>\n          </button>\n        </div>\n      </form>\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#pablo\">\n            <i class=\"material-icons\">dashboard</i>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Stats</span>\n            </p>\n          </a>\n        </li>\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink\" href=\"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"\">Mike John responded to your email</a>\n            <a class=\"dropdown-item\" href=\"\">You have 5 new tasks</a>\n            <a class=\"dropdown-item\" href=\"\">You're now friend with Andrew</a>\n            <a class=\"dropdown-item\" href=\"\">Another Notification</a>\n            <a class=\"dropdown-item\" href=\"\">Another One</a>\n          </div>\n        </li>\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            <i class=\"material-icons\">person</i>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Account</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink2\">\n            <a class=\"dropdown-item\" href=\"\" (click)=\"logout($event)\">Logout</a>\n            <a class=\"dropdown-item\" href=\"\" (click)=\"lock($event)\">Lock</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"navbar-wrapper\">\r\n      <div class=\"navbar-minimize\">\r\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\r\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\r\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\r\n        </button>\r\n      </div>\r\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\r\n      <form class=\"navbar-form\">\r\n        <div class=\"input-group no-border\">\r\n          <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control\" placeholder=\"Search User...\" [ngModelOptions]=\"{standalone: true}\">\r\n          <button mat-raised-button (click)=\"redirectToSearch($event)\" class=\"btn btn-white btn-round btn-just-icon\">\r\n            <i class=\"material-icons\">search</i>\r\n            <div class=\"ripple-container\"></div>\r\n          </button>\r\n        </div>\r\n      </form>\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" routerLink=\"/dashboard\">\r\n            <i class=\"material-icons\">dashboard</i>\r\n            <p>\r\n              <span class=\"d-lg-none d-md-block\">Stats</span>\r\n            </p>\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\">\r\n          <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink\" href=\"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            <i class=\"material-icons\">notifications</i>\r\n            <span class=\"notification\" *ngIf=\"user.notifications.length > 0\">{{ user.notifications.length }}</span>\r\n            <p>\r\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\r\n            </p>\r\n          </a>\r\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n              <ng-container *ngFor=\"let m of user.notifications\">\r\n                  <a class=\"dropdown-item\" href=\"\">{{ m.message }}</a>\r\n              </ng-container>\r\n          </div>\r\n        </li>\r\n        <li class=\"nav-item dropdown\">\r\n          <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            <i class=\"material-icons\">person</i>\r\n            <p>\r\n              <span class=\"d-lg-none d-md-block\">Account</span>\r\n            </p>\r\n          </a>\r\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n            <a class=\"dropdown-item\" href=\"\" (click)=\"logout($event)\">Logout</a>\r\n            <a class=\"dropdown-item\" href=\"\" (click)=\"lock($event)\">Lock</a>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -2558,6 +3490,7 @@ var NavbarComponent = /** @class */ (function () {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+        this.user = JSON.parse(this.authService.getCurrentUser());
     }
     NavbarComponent.prototype.minimizeSidebar = function () {
         var body = document.getElementsByTagName('body')[0];
@@ -2700,6 +3633,7 @@ var NavbarComponent = /** @class */ (function () {
     };
     NavbarComponent.prototype.getTitle = function () {
         var titlee = this.location.prepareExternalUrl(this.location.path());
+        titlee = String(titlee).split('?')[0];
         for (var i = 0; i < this.listTitles.length; i++) {
             if (this.listTitles[i].type === "link" && this.listTitles[i].path === titlee) {
                 return this.listTitles[i].title;
@@ -2809,7 +3743,7 @@ var NavbarModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n        <div class=\"logo\">\n          <a class=\"simple-text logo-mini\">\n            <div class=\"logo-img\">\n                <img src=\"/assets/img/conceptmap.png\"/>\n            </div>\n          </a>\n            <a href=\"#\" class=\"simple-text logo-normal\">\n              CMPaaS Project\n            </a>\n            <p>Knowledge Portal</p> \n        </div>\n\n\n        <div class=\"sidebar-wrapper\">\n\n            <div class=\"user\">\n                <div class=\"photo\">\n                    <img src={{this.user.profile_picture}} />\n                </div>\n                <div class=\"user-info\">\n                    <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                        <span>\n                            {{this.user.firstname}}\n                            <b class=\"caret\"></b>\n                        </span>\n                    </a>\n                    <div class=\"collapse\" id=\"collapseExample\">\n                        <ul class=\"nav\">\n                            <li class=\"nav-item\">\n                                <a href=\"javascript:void(0)\" class=\"nav-link\">\n                                    <span class=\"sidebar-mini\">MP</span>\n                                    <span class=\"sidebar-normal\">My Profile</span>\n                                </a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"javascript:void(0)\" class=\"nav-link\">\n                                    <span class=\"sidebar-mini\">EP</span>\n                                    <span class=\"sidebar-normal\">Edit Profile</span>\n                                </a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"javascript:void(0)\" class=\"nav-link\">\n                                    <span class=\"sidebar-mini\">S</span>\n                                    <span class=\"sidebar-normal\">Settings</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n            <div *ngIf=\"isMobileMenu()\">\n              <form class=\"navbar-form\">\n                <span class=\"bmd-form-group\"><div class=\"input-group no-border\">\n                  <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                  <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i>\n                    <div class=\"ripple-container\"></div>\n                  </button>\n                </div></span>\n              </form>\n              <ul class=\"nav navbar-nav nav-mobile-menu\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" href=\"#pablo\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>\n                      <span class=\"d-lg-none d-md-block\">Stats</span>\n                    </p>\n                  </a>\n                </li>\n                <li class=\"nav-item dropdown\">\n                  <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                    <i class=\"material-icons\">notifications</i>\n                    <span class=\"notification\">5</span>\n                    <p>\n                      <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                    </p>\n                  </a>\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                    <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\n                    <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\n                    <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\n                    <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\n                    <a class=\"dropdown-item\" href=\"#\">Another One</a>\n                  </div>\n                </li>\n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                      <i class=\"material-icons\">person</i>\n                      <p>\n                        <span class=\"d-lg-none d-md-block\">Account</span>\n                      </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink2\">\n                      <a class=\"dropdown-item\" href=\"\" (click)=\"logout($event)\">Logout</a>\n                      <a class=\"dropdown-item\" href=\"\" (click)=\"lock($event)\">Lock</a>\n                    </div>\n                  </li>\n              </ul>\n            </div>\n            <ul class=\"nav\">\n                <li routerLinkActive=\"active\" *ngFor=\"let menuitem of menuItems\" class=\"nav-item\">\n                    <!--If is a single link-->\n                    <a [routerLink]=\"[menuitem.path]\" *ngIf=\"menuitem.type === 'link'\" class=\"nav-link\">\n                        <i class=\"material-icons\">{{menuitem.icontype}}</i>\n                        <p>{{menuitem.title}}</p>\n                    </a>\n                    <!--If it have a submenu-->\n                    <a data-toggle=\"collapse\" href=\"#{{menuitem.collapse}}\" *ngIf=\"menuitem.type === 'sub'\" (click)=\"updatePS()\" class=\"nav-link\">\n                        <i class=\"material-icons\">{{menuitem.icontype}}</i>\n                        <p>{{menuitem.title}}<b class=\"caret\"></b></p>\n                    </a>\n\n                    <!--Display the submenu items-->\n                    <div id=\"{{menuitem.collapse}}\" class=\"collapse\" *ngIf=\"menuitem.type === 'sub'\">\n                        <ul class=\"nav\">\n                            <li routerLinkActive=\"active\" *ngFor=\"let childitem of menuitem.children\" class=\"nav-item\">\n                                <a [routerLink]=\"[menuitem.path, childitem.path]\" class=\"nav-link\">\n                                    <span class=\"sidebar-mini\">{{childitem.ab}}</span>\n                                    <span class=\"sidebar-normal\">{{childitem.title}}</span>\n                                </a>\n                            </li>\n                        </ul>\n                    </div>\n                </li>\n                <!-- <li class=\"nav-item\">\n                    <a href=\"http://md-pro-angular.creative-tim.com/documentation/tutorial?ref=md-pro-archive\" class=\"nav-link\">\n                        <i class=\"material-icons\">school</i>\n                        <p>Documentation</p>\n                    </a>\n                </li> -->\n            </ul>\n\n        </div>\n"
+module.exports = "\r\n\r\n        <div class=\"logo\">\r\n          <a class=\"simple-text logo-mini\">\r\n            <div class=\"logo-img\">\r\n                <img src=\"/assets/img/conceptmap.png\"/>\r\n            </div>\r\n          </a>\r\n            <a href=\"#\" class=\"simple-text logo-normal\">\r\n              CMPaaS Project\r\n            </a>\r\n            <p>Knowledge Portal</p> \r\n        </div>\r\n\r\n\r\n        <div class=\"sidebar-wrapper\">\r\n\r\n            <div class=\"user\">\r\n                <div class=\"photo\">\r\n                    <img src={{this.user.profile_picture}} />\r\n                </div>\r\n                <div class=\"user-info\">\r\n                    <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\r\n                        <span>\r\n                            {{this.user.firstname}}\r\n                            <b class=\"caret\"></b>\r\n                        </span>\r\n                    </a>\r\n                    <div class=\"collapse\" id=\"collapseExample\">\r\n                        <ul class=\"nav\">\r\n                            <li class=\"nav-item\">\r\n                                <a routerLink=\"/pages/user\" class=\"nav-link\">\r\n                                    <span class=\"sidebar-mini\">MP</span>\r\n                                    <span class=\"sidebar-normal\">My Profile</span>\r\n                                </a>\r\n                            </li>\r\n                            <!-- <li class=\"nav-item\">\r\n                                <a href=\"javascript:void(0)\" class=\"nav-link\">\r\n                                    <span class=\"sidebar-mini\">EP</span>\r\n                                    <span class=\"sidebar-normal\">Edit Profile</span>\r\n                                </a>\r\n                            </li>\r\n                            <li class=\"nav-item\">\r\n                                <a href=\"javascript:void(0)\" class=\"nav-link\">\r\n                                    <span class=\"sidebar-mini\">S</span>\r\n                                    <span class=\"sidebar-normal\">Settings</span>\r\n                                </a>\r\n                            </li> -->\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div *ngIf=\"isMobileMenu()\">\r\n              <form class=\"navbar-form\">\r\n                <span class=\"bmd-form-group\"><div class=\"input-group no-border\">\r\n                  <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\r\n                  <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\r\n                    <i class=\"material-icons\">search</i>\r\n                    <div class=\"ripple-container\"></div>\r\n                  </button>\r\n                </div></span>\r\n              </form>\r\n              <ul class=\"nav navbar-nav nav-mobile-menu\">\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link\" href=\"#pablo\">\r\n                    <i class=\"material-icons\">dashboard</i>\r\n                    <p>\r\n                      <span class=\"d-lg-none d-md-block\">Stats</span>\r\n                    </p>\r\n                  </a>\r\n                </li>\r\n                <li class=\"nav-item dropdown\">\r\n                  <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"material-icons\">notifications</i>\r\n                    <span class=\"notification\">5</span>\r\n                    <p>\r\n                      <span class=\"d-lg-none d-md-block\">Some Actions</span>\r\n                    </p>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another One</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown\">\r\n                    <a class=\"nav-link\" href=\"\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                      <i class=\"material-icons\">person</i>\r\n                      <p>\r\n                        <span class=\"d-lg-none d-md-block\">Account</span>\r\n                      </p>\r\n                    </a>\r\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n                      <a class=\"dropdown-item\" href=\"\" (click)=\"logout($event)\">Logout</a>\r\n                      <a class=\"dropdown-item\" href=\"\" (click)=\"lock($event)\">Lock</a>\r\n                    </div>\r\n                  </li>\r\n              </ul>\r\n            </div>\r\n            <ul class=\"nav\">\r\n                <li routerLinkActive=\"active\" *ngFor=\"let menuitem of menuItems\" class=\"nav-item\">\r\n                    <!--If is a single link-->\r\n                    <a [routerLink]=\"[menuitem.path]\" *ngIf=\"menuitem.type === 'link'\" class=\"nav-link\">\r\n                        <i class=\"material-icons\">{{menuitem.icontype}}</i>\r\n                        <p>{{menuitem.title}}</p>\r\n                    </a>\r\n                    <!--If it have a submenu-->\r\n                    <a data-toggle=\"collapse\" href=\"#{{menuitem.collapse}}\" *ngIf=\"menuitem.type === 'sub'\" (click)=\"updatePS()\" class=\"nav-link\">\r\n                        <i class=\"material-icons\">{{menuitem.icontype}}</i>\r\n                        <p>{{menuitem.title}}<b class=\"caret\"></b></p>\r\n                    </a>\r\n\r\n                    <!--Display the submenu items-->\r\n                    <div id=\"{{menuitem.collapse}}\" class=\"collapse\" *ngIf=\"menuitem.type === 'sub'\">\r\n                        <ul class=\"nav\">\r\n                            <li routerLinkActive=\"active\" *ngFor=\"let childitem of menuitem.children\" class=\"nav-item\">\r\n                                <a [routerLink]=\"[menuitem.path, childitem.path]\" class=\"nav-link\">\r\n                                    <span class=\"sidebar-mini\">{{childitem.ab}}</span>\r\n                                    <span class=\"sidebar-normal\">{{childitem.title}}</span>\r\n                                </a>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </li>\r\n                <!-- <li class=\"nav-item\">\r\n                    <a href=\"http://md-pro-angular.creative-tim.com/documentation/tutorial?ref=md-pro-archive\" class=\"nav-link\">\r\n                        <i class=\"material-icons\">school</i>\r\n                        <p>Documentation</p>\r\n                    </a>\r\n                </li> -->\r\n            </ul>\r\n\r\n        </div>\r\n"
 
 /***/ }),
 
@@ -2828,6 +3762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js");
 /* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services/auth/auth.service */ "./src/app/_services/auth/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_services/sidebar/sidebar.service */ "./src/app/_services/sidebar/sidebar.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2837,6 +3772,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2859,6 +3795,16 @@ var ROUTES = [{
             { path: 'maps', title: 'Maps', ab: 'M' }
         ]
     }, {
+        path: '/manage',
+        title: 'Manage',
+        type: 'sub',
+        icontype: 'developer_board',
+        collapse: 'manage',
+        children: [
+            { path: 'groups', title: 'Groups', ab: 'G' },
+            { path: 'maps', title: 'Maps', ab: 'M' }
+        ]
+    }, {
         path: '/edit',
         title: 'Edit',
         type: 'sub',
@@ -2866,6 +3812,15 @@ var ROUTES = [{
         collapse: 'edit',
         children: [
             { path: 'cmap', title: 'Concept Map', ab: 'CM' }
+        ]
+    }, {
+        path: '/tools',
+        title: 'Tools',
+        type: 'sub',
+        icontype: 'build',
+        collapse: 'tools',
+        children: [
+            { path: 'mapdb', title: 'Map Debates', ab: 'MD' }
         ]
     }
     // ,{
@@ -2949,9 +3904,10 @@ var ROUTES = [{
     // }
 ];
 var SidebarComponent = /** @class */ (function () {
-    function SidebarComponent(router, authService) {
+    function SidebarComponent(router, authService, sidebarService) {
         this.router = router;
         this.authService = authService;
+        this.sidebarService = sidebarService;
         this.user = JSON.parse(this.authService.getCurrentUser());
     }
     SidebarComponent.prototype.isMobileMenu = function () {
@@ -2968,6 +3924,9 @@ var SidebarComponent = /** @class */ (function () {
                 return menuItem;
             else if (_this.user.groups.filter(function (g) { return (g.name === "Admin"); }).length > 0)
                 return menuItem;
+        });
+        this.sidebarService.update.subscribe(function (res) {
+            _this.user.profile_picture = res;
         });
     };
     SidebarComponent.prototype.updatePS = function () {
@@ -2993,12 +3952,14 @@ var SidebarComponent = /** @class */ (function () {
         this.authService.lock();
         this.router.navigate(['pages/lock']);
     };
+    SidebarComponent.prototype.updateUser = function () {
+    };
     SidebarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-sidebar-cmp',
             template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/sidebar/sidebar.component.html"),
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_4__["SidebarService"]])
     ], SidebarComponent);
     return SidebarComponent;
 }());
@@ -3048,6 +4009,454 @@ var SidebarModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/speech2map/spech-analysis.ts":
+/*!**********************************************!*\
+  !*** ./src/app/speech2map/spech-analysis.ts ***!
+  \**********************************************/
+/*! exports provided: SpeechAnalysis */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeechAnalysis", function() { return SpeechAnalysis; });
+/* harmony import */ var pegjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pegjs */ "./node_modules/pegjs/lib/peg.js");
+/* harmony import */ var pegjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pegjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../edit/conceptmap/conceptmap.component */ "./src/app/edit/conceptmap/conceptmap.component.ts");
+
+
+
+var SpeechAnalysis = /** @class */ (function () {
+    function SpeechAnalysis() {
+        this.grammar = 'start =  sentence' + '\n' +
+            'ws "whitespace" = [ \\t\\n\\r]*' + '\n\n' +
+            'sentence = concept relation concept' + '\n\n' +
+            'concept = cct:(cnoun conj cnoun) {return cct.join(" ").trim();} /' + '\n' +
+            '          cct:(det? cnoun) {return cct.join(" ").replace(\/\\s\\s+\/g, \' \').trim()} /' + '\n\n' +
+            '          cct:(spnoun (adj/adv)?) {return cct.join(" ").trim()}' + '\n\n' +
+            'relation = rlt:(verb adp) {return rlt.join(" ").trim()} /' + '\n' +
+            '           rlt:(verb verb verb? adp) {return rlt.join(" ").replace(\/[, ]+\/g, " ").trim()} /' + '\n' +
+            '           rlt:(pron verb adp) {return rlt.trim();} /' + '\n' +
+            '           rlt:(adp pron verb) {return rlt.trim();} /' + '\n' +
+            '           rlt:(adv verb) {return rlt.trim();} /' + '\n' +
+            '           rlt:( verb ) {return rlt.trim();} ' + '\n\n' +
+            'verb = verb:("[VERB," tag "]") ws {return verb[1].trim();}' + '\n\n' +
+            'noun = noun:("[NOUN," tag "]") ws {return noun[1].trim();}' + '\n\n' +
+            'det = det:("[DET," tag "]") ws {return det[1].trim();}' + '\n\n' +
+            'adp = adp:("[ADP," tag "]") ws {return adp[1].trim();}' + '\n\n' +
+            'adj = adj:("[ADJ," tag "]") ws {return adj[1].trim();}' + '\n\n' +
+            'adv = adv:("[ADV," tag "]") ws {return adv[1].trim();}' + '\n\n' +
+            'pron = pron:("[PRON," tag "]") ws {return pron[1].trim();}' + '\n\n' +
+            'conj = conj:("[CONJ," tag "]") ws {return conj[1].trim();}' + '\n\n' +
+            'punct = punct:("[PUNCT," "-" "]") ws {return punct[1].trim();}' + '\n\n' +
+            'spnoun = spnoun:(verb (punct pron)?) ws{return spnoun.join("").replace(\/[,]+\/g, "").trim();}' + '\n\n' +
+            'cnoun = cnoun:(noun adp noun adj) {return cnoun.join(" ").trim();} /' + '\n' +
+            '        cnoun:(noun adp noun) {return cnoun.join(" ").trim();} /' + '\n' +
+            '        cnoun:(noun conj noun) {return cnoun.join(" ").trim();} /' + '\n' +
+            '        cnoun:(noun adj) {return cnoun.join(" ").trim();} /' + '\n' +
+            '        cnoun:(noun) {return cnoun.trim();} /' + '\n' +
+            '        cnoun:(adv) {return cnoun.trim();} /' + '\n' +
+            '        cnoun:(pron noun?) {return cnoun.join(" ").trim();} /' + '\n' +
+            '        cnoun:(adj) {return cnoun.trim();}' + '\n' +
+            'tag = tag:[a-zA-Z\\u00C0-\\u00FF]+ {return tag.join("");}' + '\n';
+    }
+    /**
+      * Gera a string para o parser, envia para o parser
+      * envia as triplas para a montagem do mapa
+      * @param syntax o retorno da Google Cloud Natural Language.
+      */
+    SpeechAnalysis.prototype.analyze = function (syntax) {
+        var query;
+        query = this.generateString(syntax.tokens);
+        var parser = pegjs__WEBPACK_IMPORTED_MODULE_0__["generate"](this.grammar);
+        try {
+            var proposition = parser.parse(query);
+            this.addNodesToMap(proposition);
+        }
+        catch (error) {
+            if (error.name === 'SyntaxError') {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_1___default()({
+                    title: 'Syntax Error',
+                    //text: error.message,
+                    text: "Ocorreu um erro na extração das triplas. " +
+                        "Verifique se a proposição está no formato correto " +
+                        "e tente novamente.",
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-info'
+                });
+            }
+            console.log(error.name);
+        }
+    };
+    /**
+      * Gera a string que será enviada para o parser (PEG.js)
+      * extrair as triplas
+      * @param syntax parte da resposta da GCNL que contem os tokens gramaticais.
+      */
+    SpeechAnalysis.prototype.generateString = function (tokens) {
+        var query = '';
+        var tag;
+        var text;
+        tokens.forEach(function (part) {
+            tag = part.partOfSpeech.tag;
+            text = part.text.content;
+            query += "[" + tag + "," + text + "]";
+        });
+        console.log(query);
+        return query;
+    };
+    SpeechAnalysis.prototype.capitalize = function (s) {
+        var first_char = /\S/;
+        return s.replace(first_char, function (m) { return m.toUpperCase(); });
+    };
+    /**
+      * Recebe um array com as trilpas e faz a inserção das triplas no mapa conceitual
+      * proposition[0]: conceito1
+      * proposition[1]: relação
+      * proposition[2]: conceito2
+      * @param proposition array de strings que contem as triplas.
+      */
+    SpeechAnalysis.prototype.addNodesToMap = function (proposition) {
+        var node1;
+        var node2;
+        var nodeRelation;
+        proposition[0] = this.capitalize(proposition[0]);
+        proposition[2] = this.capitalize(proposition[2]);
+        proposition[1] = proposition[1].toLocaleLowerCase();
+        _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].startTransaction("new node");
+        var rgx1 = new RegExp(proposition[0], "i");
+        var rgx2 = new RegExp(proposition[2], "i");
+        var rgx3 = new RegExp(proposition[1], "i");
+        var nodes1 = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].findNodesByExample({ text: rgx1 });
+        var nodes2 = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].findNodesByExample({ text: rgx2 });
+        var nodes3 = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].findNodesByExample({ text: rgx3 });
+        node1 = nodes1.first();
+        node2 = nodes2.first();
+        nodeRelation = nodes3.first();
+        if (node1 && node2) {
+            nodeRelation = { text: proposition[1], category: "relation", error: "" };
+            var model = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].model;
+            model.addNodeData(nodeRelation);
+            var newLink1 = { from: node1.key, to: nodeRelation.key, category: "normal", error: "" };
+            var newLink2 = { from: nodeRelation.key, to: node2.key, category: "normal", error: "" };
+            model.addLinkData(newLink1);
+            model.addLinkData(newLink2);
+        }
+        else if (node1) {
+            node2 = { text: proposition[2], category: "concept", error: "" };
+            nodeRelation = { text: proposition[1], category: "relation", error: "" };
+            var model = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].model;
+            model.addNodeData(node2);
+            model.addNodeData(nodeRelation);
+            var newLink1_1 = { from: node1.key, to: nodeRelation.key, category: "normal", error: "" };
+            var newLink2_1 = { from: nodeRelation.key, to: node2.key, category: "normal", error: "" };
+            model.addLinkData(newLink1_1);
+            model.addLinkData(newLink2_1);
+        }
+        else {
+            if (node2) {
+                node1 = { text: proposition[0], category: "concept", error: "" };
+                nodeRelation = { text: proposition[1], category: "relation", error: "" };
+                var model = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].model;
+                model.addNodeData(node1);
+                model.addNodeData(nodeRelation);
+                var newLink1_2 = { from: node1.key, to: nodeRelation.key, category: "normal", error: "" };
+                var newLink2_2 = { from: nodeRelation.key, to: node2.key, category: "normal", error: "" };
+                model.addLinkData(newLink1_2);
+                model.addLinkData(newLink2_2);
+            }
+            else {
+                node1 = { text: proposition[0], category: "concept", error: "" };
+                node2 = { text: proposition[2], category: "concept", error: "" };
+                nodeRelation = { text: proposition[1], category: "relation", error: "" };
+                var model = _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].model;
+                model.addNodeData(node1);
+                model.addNodeData(node2);
+                model.addNodeData(nodeRelation);
+                var newLink1_3 = { from: node1.key, to: nodeRelation.key, category: "normal", error: "" };
+                var newLink2_3 = { from: nodeRelation.key, to: node2.key, category: "normal", error: "" };
+                model.addLinkData(newLink1_3);
+                model.addLinkData(newLink2_3);
+            }
+        }
+        _edit_conceptmap_conceptmap_component__WEBPACK_IMPORTED_MODULE_2__["myDiagram"].commitTransaction("new node");
+    };
+    return SpeechAnalysis;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/speech2map/speech-recognition.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/speech2map/speech-recognition.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n  }\r\n  \r\n  .dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    min-height: 200px;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    background-color: #fff;\r\n    padding: 12px;\r\n    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\r\n  }\r\n  \r\n  @media (min-width: 768px) {\r\n    .dialog {\r\n      top: 40px;\r\n    }\r\n  }\r\n  \r\n  .dialog__close-btn {\r\n    border: 0;\r\n    background: none;\r\n    color: #2d2d2d;\r\n    position: absolute;\r\n    top: 8px;\r\n    right: 8px;\r\n    font-size: 1.2em;\r\n  }\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/speech2map/speech-recognition.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/speech2map/speech-recognition.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12 col-md-12\">\r\n            <div class=\"card\">\r\n                <div class=\"card-header\" data-background-color=\"red\">\r\n                    <small><h3 class=\"card-title\" align=\"center\"><b>Speech2Map</b></h3></small>\r\n                </div>\r\n                <div class=\"content\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-md-2\"></div>\r\n                        <div class=\"col-md-8\">\r\n                            <form>\r\n                                <div class=\"input-group\">\r\n                                    <input type=\"text\" class=\"form-control border-input\" name=\"txtSpeechSearchMovieName\" id=\"txtSpeechSearchMovieName\"\r\n                                        value=\"\" placeholder=\"Click the button to start recording or type the preposition...\" [(ngModel)]=\"speechData\">\r\n\r\n                                    <span class=\"input-group-btn\">\r\n                                        <button class='btn {{cls}} btn-round btn-md'\r\n                                                name=\"btnActivateSpeechSearchMovie\" \r\n                                                id=\"btnActivateSpeechSearchMovie\"\r\n                                                (click)=\"activateSpeechSearchMovie()\">\r\n                                                \r\n                                            <span class=\"mat-button-wrapper\">\r\n                                                <i class=\"material-icons\">{{mic}}</i>\r\n                                            </span>\r\n                                        </button>\r\n                                    </span>\r\n                                </div>\r\n                                \r\n                                <button class=\"btn btn-success\" id=\"bt-save\" (click)=\"save()\">\r\n                                    Save\r\n                                </button>\r\n                                <button class=\"btn btn-danger\" id=\"bt-save\" (click)=\"close()\">\r\n                                    Cancel\r\n                                </button>\r\n                            </form>\r\n                        </div>\r\n                        <div class=\"col-md-1\"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/speech2map/speech-recognition.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/speech2map/speech-recognition.component.ts ***!
+  \************************************************************/
+/*! exports provided: SpeechRecognitionComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeechRecognitionComponent", function() { return SpeechRecognitionComponent; });
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _spech_analysis__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./spech-analysis */ "./src/app/speech2map/spech-analysis.ts");
+/* harmony import */ var _services_speech2map_speech_recognition_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_services/speech2map/speech-recognition.service */ "./src/app/_services/speech2map/speech-recognition.service.ts");
+/* harmony import */ var _secrets_vars__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../secrets.vars */ "./src/app/secrets.vars.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+var text;
+var SpeechRecognitionComponent = /** @class */ (function () {
+    function SpeechRecognitionComponent(zone, dialogRef, speechData, speechRecognitionService, http) {
+        this.zone = zone;
+        this.dialogRef = dialogRef;
+        this.speechData = speechData;
+        this.speechRecognitionService = speechRecognitionService;
+        this.http = http;
+        this.recognizing = false;
+        this.mic = "mic";
+        this.cls = "btn-info";
+        this.showSearchButton = true;
+    }
+    SpeechRecognitionComponent.prototype.ngOnInit = function () {
+        //myDiagram.layout = new go.ForceDirectedLayout();
+        console.log("hello");
+    };
+    SpeechRecognitionComponent.prototype.ngAfterViewInit = function () {
+        gapi.load('client:auth2', start);
+    };
+    SpeechRecognitionComponent.prototype.ngOnDestroy = function () {
+        this.speechRecognitionService.DestroySpeechObject();
+    };
+    SpeechRecognitionComponent.prototype.activateSpeechSearchMovie = function () {
+        var _this = this;
+        if (this.recognizing) {
+            this.speechRecognitionService.stop();
+            this.recognizing = false;
+            return;
+        }
+        this.recognizing = true;
+        this.speechData = "";
+        this.mic = "mic_off";
+        this.cls = "btn-danger";
+        this.speechRecognitionService.record()
+            .subscribe(
+        //listener
+        function (value) {
+            _this.speechData = value.toLocaleLowerCase();
+            //console.log(value);
+        }, 
+        //errror
+        function (err) {
+            console.log(err);
+            _this.mic = "mic";
+            _this.cls = "btn-info";
+            if (err.error == "no-speech") {
+                console.log("--restarting service--");
+                _this.recognizing = false;
+            }
+        }, 
+        //completion
+        function () {
+            _this.recognizing = false;
+            _this.zone.run(function () {
+                _this.mic = "mic";
+                _this.cls = "btn-info";
+            });
+            console.log("--complete--");
+        });
+    };
+    SpeechRecognitionComponent.prototype.close = function () {
+        this.speechRecognitionService.DestroySpeechObject();
+        this.dialogRef.close();
+    };
+    SpeechRecognitionComponent.prototype.save = function () {
+        this.speechRecognitionService.stop();
+        if (this.speechData) {
+            this.analyzeAndMap(this.speechData.toLocaleLowerCase());
+            this.dialogRef.close();
+        }
+        else {
+            this.showMessage();
+        }
+    };
+    SpeechRecognitionComponent.prototype.analyzeAndMap = function (text) {
+        gapi.load('client:auth2', start);
+        gapi.client.language.documents.analyzeSyntax({
+            document: {
+                content: text,
+                type: 'PLAIN_TEXT',
+                language: 'pt-br'
+            },
+            encodingType: 'UTF32',
+        }).then(function (results) {
+            var syntax = JSON.parse(results.body);
+            new _spech_analysis__WEBPACK_IMPORTED_MODULE_4__["SpeechAnalysis"]().analyze(syntax);
+        }).catch(function (err) {
+            console.error('ERROR:', err);
+        });
+    };
+    SpeechRecognitionComponent.prototype.hotkeys = function (event) {
+        //apertar CTRL + . inicia a gravação
+        if (event.keyCode == 190 && event.ctrlKey) {
+            this.activateSpeechSearchMovie();
+        }
+        //Apertar ESC sai da tela de inserção
+        if (event.keyCode == 27) {
+            this.close();
+        }
+        //Apertar ENTER salva a proposição se tiver algo escrito
+        if (event.keyCode == 13) {
+            if (this.speechData) {
+                if (this.speechData.trim().length > 3) {
+                    this.save();
+                }
+            }
+        }
+    };
+    SpeechRecognitionComponent.prototype.showMessage = function () {
+        swal({
+            title: 'Nenhuma Proposição Inserida',
+            //text: error.message,
+            text: "Por favor, insira uma proposição " +
+                "e tente novamente.",
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-info'
+        });
+    };
+    SpeechRecognitionComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'speech',
+            template: __webpack_require__(/*! ./speech-recognition.component.html */ "./src/app/speech2map/speech-recognition.component.html"),
+            styles: [__webpack_require__(/*! ./speech-recognition.component.css */ "./src/app/speech2map/speech-recognition.component.css")],
+            animations: [
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('dialog', [
+                    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('void => *', [
+                        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ transform: 'scale3d(.3, .3, .3)' }),
+                        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])(100)
+                    ]),
+                    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('* => void', [
+                        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])(100, Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ transform: 'scale3d(.0, .0, .0)' }))
+                    ])
+                ])
+            ],
+            host: { '(window:keydown)': 'hotkeys($event)' }
+        }),
+        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgZone"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"], String, _services_speech2map_speech_recognition_service__WEBPACK_IMPORTED_MODULE_5__["SpeechRecognitionService"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], SpeechRecognitionComponent);
+    return SpeechRecognitionComponent;
+}());
+
+function start() {
+    // Initializes the client with the API key and the Translate API.
+    gapi.client.init({
+        apiKey: _secrets_vars__WEBPACK_IMPORTED_MODULE_6__["googleApiKey"],
+        clientId: _secrets_vars__WEBPACK_IMPORTED_MODULE_6__["googleClientId"],
+        discoveryDocs: ['https://language.googleapis.com/$discovery/rest?version=v1', 'https://language.googleapis.com/$discovery/rest?version=v1beta2'],
+        scope: 'https://www.googleapis.com/auth/cloud-language https://www.googleapis.com/auth/cloud-platform'
+    });
+}
+
+
+/***/ }),
+
+/***/ "./src/app/speech2map/speech-recognition.module.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/speech2map/speech-recognition.module.ts ***!
+  \*********************************************************/
+/*! exports provided: SpeechRecognitionModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeechRecognitionModule", function() { return SpeechRecognitionModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _speech_recognition_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./speech-recognition.component */ "./src/app/speech2map/speech-recognition.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var SpeechRecognitionModule = /** @class */ (function () {
+    function SpeechRecognitionModule() {
+    }
+    SpeechRecognitionModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                //angular builtin module
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
+                _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]
+            ],
+            declarations: [
+                _speech_recognition_component__WEBPACK_IMPORTED_MODULE_4__["SpeechRecognitionComponent"]
+            ],
+            exports: [
+                _speech_recognition_component__WEBPACK_IMPORTED_MODULE_4__["SpeechRecognitionComponent"]
+            ]
+        })
+    ], SpeechRecognitionModule);
+    return SpeechRecognitionModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -3063,7 +4472,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    production: false
+    production: false,
+    ws_url: 'http://localhost:3000'
 };
 
 
@@ -3101,8 +4511,19 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/wagnerperin/Desktop/NodeProjects/KnowledgePortal/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\wagne\Desktop\NodeProjects\KnowledgePortal\src\main.ts */"./src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/*!********************!*\
+  !*** ws (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

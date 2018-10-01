@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"header text-center\">\n      <h3 class=\"title\">FullCalendar.io</h3>\n      <p class=\"category\">Handcrafted by our friends from\n        <a target=\"_blank\" href=\"https://fullcalendar.io/\">FullCalendar.io</a>. Please checkout their\n        <a href=\"https://fullcalendar.io/docs/\" target=\"_blank\">full documentation.</a>\n      </p>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-10 ml-auto mr-auto\">\n        <div class=\"card card-calendar\">\n          <div class=\"card-body \">\n            <div id=\"fullCalendar\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"header text-center\">\r\n      <h3 class=\"title\">FullCalendar.io</h3>\r\n      <p class=\"category\">Handcrafted by our friends from\r\n        <a target=\"_blank\" href=\"https://fullcalendar.io/\">FullCalendar.io</a>. Please checkout their\r\n        <a href=\"https://fullcalendar.io/docs/\" target=\"_blank\">full documentation.</a>\r\n      </p>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-md-10 ml-auto mr-auto\">\r\n        <div class=\"card card-calendar\">\r\n          <div class=\"card-body \">\r\n            <div id=\"fullCalendar\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 

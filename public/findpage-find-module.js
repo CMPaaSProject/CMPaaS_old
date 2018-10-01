@@ -1,5 +1,141 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["findpage-find-module"],{
 
+/***/ "./src/app/_models/conceptmap.model.ts":
+/*!*********************************************!*\
+  !*** ./src/app/_models/conceptmap.model.ts ***!
+  \*********************************************/
+/*! exports provided: ConceptMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConceptMap", function() { return ConceptMap; });
+var ConceptMap = /** @class */ (function () {
+    function ConceptMap() {
+    }
+    return ConceptMap;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_models/group.model.ts":
+/*!****************************************!*\
+  !*** ./src/app/_models/group.model.ts ***!
+  \****************************************/
+/*! exports provided: Group */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Group", function() { return Group; });
+var Group = /** @class */ (function () {
+    function Group() {
+    }
+    return Group;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_models/index.model.ts":
+/*!****************************************!*\
+  !*** ./src/app/_models/index.model.ts ***!
+  \****************************************/
+/*! exports provided: User, ConceptMap, Group, Version, Permission */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _user_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.model */ "./src/app/_models/user.model.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "User", function() { return _user_model__WEBPACK_IMPORTED_MODULE_0__["User"]; });
+
+/* harmony import */ var _conceptmap_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./conceptmap.model */ "./src/app/_models/conceptmap.model.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ConceptMap", function() { return _conceptmap_model__WEBPACK_IMPORTED_MODULE_1__["ConceptMap"]; });
+
+/* harmony import */ var _group_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./group.model */ "./src/app/_models/group.model.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Group", function() { return _group_model__WEBPACK_IMPORTED_MODULE_2__["Group"]; });
+
+/* harmony import */ var _version_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./version.model */ "./src/app/_models/version.model.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Version", function() { return _version_model__WEBPACK_IMPORTED_MODULE_3__["Version"]; });
+
+/* harmony import */ var _permission_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./permission.model */ "./src/app/_models/permission.model.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Permission", function() { return _permission_model__WEBPACK_IMPORTED_MODULE_4__["Permission"]; });
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/_models/permission.model.ts":
+/*!*********************************************!*\
+  !*** ./src/app/_models/permission.model.ts ***!
+  \*********************************************/
+/*! exports provided: Permission */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Permission", function() { return Permission; });
+var Permission = /** @class */ (function () {
+    function Permission() {
+        this.canView = true;
+        this.canFork = true;
+        this.canEdit = false;
+    }
+    return Permission;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_models/user.model.ts":
+/*!***************************************!*\
+  !*** ./src/app/_models/user.model.ts ***!
+  \***************************************/
+/*! exports provided: User */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_models/version.model.ts":
+/*!******************************************!*\
+  !*** ./src/app/_models/version.model.ts ***!
+  \******************************************/
+/*! exports provided: Version */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Version", function() { return Version; });
+var Version = /** @class */ (function () {
+    function Version() {
+    }
+    return Version;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/findpage/find.component.css":
 /*!*********************************************!*\
   !*** ./src/app/findpage/find.component.css ***!
@@ -7,7 +143,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img{\n    max-width: 50px;\n    max-height: 50px;\n    overflow: hidden;\n    overflow-x: hidden;\n    overflow-y: hidden;\n    border-radius: 50%;\n    border-top-left-radius: 50%;\n    border-top-right-radius: 50%;\n    border-bottom-right-radius: 50%;\n    border-bottom-left-radius: 50%;\n}"
+module.exports = "img{\r\n    max-width: 50px;\r\n    max-height: 50px;\r\n    overflow: hidden;\r\n    overflow-x: hidden;\r\n    overflow-y: hidden;\r\n    border-radius: 50%;\r\n    border-top-left-radius: 50%;\r\n    border-top-right-radius: 50%;\r\n    border-bottom-right-radius: 50%;\r\n    border-bottom-left-radius: 50%;\r\n}"
 
 /***/ }),
 
@@ -18,7 +154,7 @@ module.exports = "img{\n    max-width: 50px;\n    max-height: 50px;\n    overflo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                  <div class=\"card-header card-header-danger card-header-icon\">\n                    <div class=\"card-icon\">\n                      <i class=\"material-icons\">people</i>\n                    </div>\n                    <h4 class=\"card-title\">Users</h4>\n                  </div>\n                    <div class=\"card-body\">\n                        <div class=\"material-datatables\">\n                          <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" *ngIf=\"this.loaded\" cellspacing=\"0\" width=\"100%\" style=\"width:100%\">\n                                <thead>\n                                    <tr>\n                                      <th>{{ dataTable.headerRow[0] }}</th>\n                                      <th>{{ dataTable.headerRow[1] }}</th>\n                                      <th>{{ dataTable.headerRow[2] }}</th>\n                                      <th>{{ dataTable.headerRow[3] }}</th>\n                                      <th class=\"disabled-sorting text-right\">{{ dataTable.headerRow[4] }}</th>\n                                    </tr>\n                                </thead>\n                                <tfoot>\n                                    <tr>\n                                      <th>{{ dataTable.footerRow[0] }}</th>\n                                      <th>{{ dataTable.footerRow[1] }}</th>\n                                      <th>{{ dataTable.footerRow[2] }}</th>\n                                      <th>{{ dataTable.footerRow[3] }}</th>\n                                      <th class=\"text-right\">{{ dataTable.footerRow[4] }}</th>\n                                    </tr>\n                                </tfoot>\n                                <tbody>\n                                    <tr *ngFor=\"let row of dataTable.dataRows\">\n                                        <td><img src=\"{{row.profile_picture}}\"></td>\n                                        <td>{{row.username}}</td>\n                                        <td>{{row.firstname + ' ' + row.surname}}</td>\n                                        <td>{{row.email}}</td>\n                                        <td class=\"text-right\">\n                                          <a href=\"#\" class=\"btn btn-link btn-info btn-just-icon {{following(row._id)?'favorite':'favorite_border'}}\"><i class=\"material-icons\">{{following(row._id)?'favorite':'favorite_border'}}</i></a>\n                                          <a href=\"#\" class=\"btn btn-link btn-warning btn-just-icon edit\"><i class=\"material-icons\">dvr</i></a>\n                                          <a href=\"#\" class=\"btn btn-link btn-danger btn-just-icon remove\"><i class=\"material-icons\">close</i></a>\n                                        </td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                        </div>\n                    </div>\n                    <!-- end content-->\n                </div>\n                <!--  end card  -->\n            </div>\n            <!-- end col-md-12 -->\n        </div>\n        <!-- end row -->\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <div class=\"card\">\r\n                  <div class=\"card-header card-header-danger card-header-icon\">\r\n                    <div class=\"card-icon\">\r\n                      <i class=\"material-icons\">people</i>\r\n                    </div>\r\n                    <h4 class=\"card-title\">Users</h4>\r\n                  </div>\r\n                    <div class=\"card-body\">\r\n                        <div class=\"material-datatables\">\r\n                          <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" *ngIf=\"this.loaded\" cellspacing=\"0\" width=\"100%\" style=\"width:100%\">\r\n                                <thead>\r\n                                    <tr>\r\n                                      <th>{{ dataTable.headerRow[0] }}</th>\r\n                                      <th>{{ dataTable.headerRow[1] }}</th>\r\n                                      <th>{{ dataTable.headerRow[2] }}</th>\r\n                                      <th>{{ dataTable.headerRow[3] }}</th>\r\n                                      <th class=\"disabled-sorting text-right\">{{ dataTable.headerRow[4] }}</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tfoot>\r\n                                    <tr>\r\n                                      <th>{{ dataTable.footerRow[0] }}</th>\r\n                                      <th>{{ dataTable.footerRow[1] }}</th>\r\n                                      <th>{{ dataTable.footerRow[2] }}</th>\r\n                                      <th>{{ dataTable.footerRow[3] }}</th>\r\n                                      <th class=\"text-right\">{{ dataTable.footerRow[4] }}</th>\r\n                                    </tr>\r\n                                </tfoot>\r\n                                <tbody>\r\n                                    <tr *ngFor=\"let row of dataTable.dataRows\">\r\n                                        <td><img src=\"{{row.profile_picture}}\"></td>\r\n                                        <td>{{row.username}}</td>\r\n                                        <td>{{row.firstname + ' ' + row.surname}}</td>\r\n                                        <td>{{row.email}}</td>\r\n                                        <td class=\"text-right\">\r\n                                          <a href=\"#\" class=\"btn btn-link btn-info btn-just-icon {{following(row._id)?'favorite':'favorite_border'}}\"><i class=\"material-icons\">{{following(row._id)?'favorite':'favorite_border'}}</i></a>\r\n                                          <a href=\"#\" class=\"btn btn-link btn-warning btn-just-icon edit\"><i class=\"material-icons\">dvr</i></a>\r\n                                          <a href=\"#\" class=\"btn btn-link btn-danger btn-just-icon remove\"><i class=\"material-icons\">close</i></a>\r\n                                        </td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                    <!-- end content-->\r\n                </div>\r\n                <!--  end card  -->\r\n            </div>\r\n            <!-- end col-md-12 -->\r\n        </div>\r\n        <!-- end row -->\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 

@@ -9573,21 +9573,22 @@ __webpack_require__.r(__webpack_exports__);
  * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
  */
 // import 'intl';  // Run `npm install --save intl`.
+window.global = window;
 
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!********************************!*\
   !*** multi ./src/polyfills.ts ***!
   \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/wagnerperin/Desktop/NodeProjects/KnowledgePortal/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! C:\Users\wagne\Desktop\NodeProjects\KnowledgePortal\src\polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
 
-},[[1,"runtime"]]]);
+},[[2,"runtime"]]]);
 //# sourceMappingURL=polyfills.js.map

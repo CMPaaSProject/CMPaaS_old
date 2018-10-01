@@ -134,6 +134,8 @@
 
 .login-page{
 
+    overflow: hidden;
+
   .card-login {
     @include transform-translate-y(0);
     @extend .animation-transition-general;
