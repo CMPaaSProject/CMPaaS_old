@@ -3813,16 +3813,17 @@ var ROUTES = [{
         children: [
             { path: 'cmap', title: 'Concept Map', ab: 'CM' }
         ]
-    }, {
-        path: '/tools',
-        title: 'Tools',
-        type: 'sub',
-        icontype: 'build',
-        collapse: 'tools',
-        children: [
-            { path: 'mapdb', title: 'Map Debates', ab: 'MD' }
-        ]
     }
+    // ,{
+    //     path: '/tools',
+    //     title: 'Tools',
+    //     type: 'sub',
+    //     icontype: 'build',
+    //     collapse: 'tools',
+    //     children: [
+    //         {path: 'mapdb', title: 'Map Debates', ab:'MD'}
+    //     ]
+    // }
     // ,{
     //     path: '/components',
     //     title: 'Components',
@@ -4473,7 +4474,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    ws_url: 'http://localhost:3000'
+    ws_url: 'http://cmpaas.org'
 };
 
 
