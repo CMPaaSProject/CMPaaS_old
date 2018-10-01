@@ -1,0 +1,40 @@
+.card-profile{
+  @extend %common-card-testimonial;
+}
+
+.card-profile{
+  .card-header:not([class*="card-header-"]){
+    background: transparent;
+    box-shadow: none;
+  }
+  .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+    background-color: #999999;
+    border: 2px solid #CCCCCC;
+    color: #FFFFFF;
+    border-radius: 50%;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover{
+        border-color: #2ca8ff;
+    }
+  }
+
+  .picture-src{
+    width: 100%;
+  }
+
+  .picture input[type="file"] {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0 !important;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
