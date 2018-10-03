@@ -2073,11 +2073,38 @@ function initListener() {
 function stopListener() {
     myDiagram.removeModelChangedListener(monitor);
 }
+function getGroupIndex(arr) {
+    var index = -1;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].hasOwnProperty('isGroup')) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
 function realTimeUpdateModel(model) {
     stopListener();
     var received = gojs__WEBPACK_IMPORTED_MODULE_1__["Model"].fromJson(model);
     var diff = myDiagram.model["computeJsonDifference"](received);
-    myDiagram.model.applyIncrementalJson(diff);
+    diff = JSON.parse(diff);
+    if (diff.insertedNodeKeys) {
+        var index_1 = getGroupIndex(diff.modifiedNodeData);
+        if (index_1 > -1) {
+            myDiagram.startTransaction('newGroup');
+            myDiagram.model.addNodeData(diff.modifiedNodeData[index_1]);
+            myDiagram.commitTransaction('newGroup');
+            diff.insertedNodeKeys = diff.insertedNodeKeys.filter(function (el) { return el != diff.modifiedNodeData[index_1].key; });
+            diff.modifiedNodeData.splice(index_1, 1);
+        }
+    }
+    else if (diff.modifiedNodeData) {
+        var index = getGroupIndex(diff.modifiedNodeData);
+        if (index > -1) {
+            delete (diff.modifiedNodeData[index].isGroup);
+        }
+    }
+    myDiagram.model.applyIncrementalJson(JSON.stringify(diff));
     initListener();
 }
 
