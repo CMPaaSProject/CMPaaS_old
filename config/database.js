@@ -3,7 +3,7 @@ module.exports = uri => {
 
     mongoose.Promise = global.Promise;
 
-    mongoose.connect('mongodb://' + uri);
+    mongoose.connect('mongodb://' + uri, { useNewUrlParser: true, useCreateIndex: true });
 
     mongoose.connection.on('connected', () => {
         console.log('Connected to MongoDB');
